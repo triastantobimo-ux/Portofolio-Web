@@ -83,3 +83,23 @@ Stage Summary:
 - Domain baru LIVE: https://raka-pratama.vercel.app (gratis, permanen, URL lama auto-redirect 308)
 - Nama lain bisa ditambahkan kapan saja via scripts/claim-vercel-subdomain.sh <nama>
 - Opsi domain gratis komunitas tervalidasi tersedia: is-a.dev (9 nama), us.kg — panduan dikirim ke user
+
+---
+Task ID: 5
+Agent: Super Z (main agent)
+Task: Klaim domain "bimogt" + personalisasi konten placeholder menjadi Bimo GT
+
+Work Log:
+- Klaim bimogt.vercel.app via API (HTTP 200, tersedia); redirect URL lama diarahkan ke bimogt.vercel.app
+- Cek is-a.dev: bimogt.is-a.dev & bimo-gt.is-a.dev tersedia (opsional, belum diambil)
+- Personalisasi src/lib/portfolio.ts: name "Bimo GT", firstName "Bimo", email triastanto.bimo@gmail.com, socials GitHub triastantobimo-ux + Email (LinkedIn/Instagram placeholder dihapus)
+- layout.tsx: tambah metadataBase https://bimogt.vercel.app untuk SEO/OG
+- Redeploy production sukses (52s, aliased ke bimogt.vercel.app)
+- Fix: Deployment Protection (Vercel Authentication) menyala dan mengunci situs (302) -> dimatikan via PATCH /v9/projects {"ssoProtection": null}, situs publik kembali 200
+- Smoke test: title "Bimo GT — Portofolio Pribadi", GitHub link ada, API visits {"views":3}, guestbook POST ok, nol sisa "Raka/rakapratama"
+- Commit b2ccb4b
+
+Stage Summary:
+- LIVE final: https://bimogt.vercel.app (URL lama & raka-pratama juga terpasang, redirect 308)
+- Situs sepenuhnya dipersonalisasi ke identitas Bimo GT; konten proyek/pengalaman masih demo, tinggal diedit di src/lib/portfolio.ts
+- Catatan: Deployment Protection di project Vercel dimatikan agar situs publik
