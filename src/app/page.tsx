@@ -8,10 +8,10 @@ import { Journal } from "@/components/portfolio/journal";
 import { Guestbook } from "@/components/portfolio/guestbook";
 import { Contact } from "@/components/portfolio/contact";
 import { Footer } from "@/components/portfolio/footer";
-import { getLatestArticles } from "@/lib/articles";
+import { getArticleMetas } from "@/lib/articles";
 
 export default function Home() {
-  const latestArticles = getLatestArticles(3);
+  const latestArticles = getArticleMetas();
 
   return (
     <div className="relative flex min-h-screen flex-col">

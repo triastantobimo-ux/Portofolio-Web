@@ -2,6 +2,7 @@
 title: "Mengapa Internal Auditor Juga Harus Paham Teknologi"
 date: "2026-02-10"
 tags: ["Audit", "IT", "Karier"]
+category: "audit"
 emoji: "🔐"
 excerpt: "Profesi audit sedang bergerak dari checklist kertas ke analisis data. Ini cara saya melihat mengapa literasi teknologi bukan lagi pilihan, melainkan kebutuhan — dan cara memulainya tanpa harus jadi programmer."
 ---

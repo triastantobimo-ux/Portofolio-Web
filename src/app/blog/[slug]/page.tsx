@@ -5,6 +5,7 @@ import { ArrowLeft, CalendarDays, Clock } from "lucide-react";
 import { Navbar } from "@/components/portfolio/navbar";
 import { Footer } from "@/components/portfolio/footer";
 import { formatArticleDate } from "@/lib/format-date";
+import { getCategory } from "@/lib/categories";
 import { getArticle, getArticleSlugs } from "@/lib/articles";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -61,6 +62,16 @@ export default async function ArticlePage({ params }: Props) {
               {article.title}
             </h1>
             <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
+              {(() => {
+                const cat = getCategory(article.category);
+                return (
+                  <span
+                    className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-medium ${cat.badge}`}
+                  >
+                    {cat.emoji} {cat.label}
+                  </span>
+                );
+              })()}
               <span className="inline-flex items-center gap-1.5">
                 <CalendarDays className="size-4 text-primary" aria-hidden />
                 {formatArticleDate(article.date)}

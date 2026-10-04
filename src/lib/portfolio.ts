@@ -39,32 +39,51 @@ export const aboutCards = {
   focus: ["Internal Audit & Risk", "Data Analytics", "Otomatisasi & AI", "Lifelong Learning"],
 };
 
-export type Skill = {
+export type SkillGroup = {
   name: string;
-  level: number; // 0–100
-  category: "Audit" | "Teknologi" | "Tools";
+  emoji: string;
+  note: string; // satu kalimat pengantar kelompok
+  items: string[];
 };
 
-export const skills: Skill[] = [
-  // — Dunia audit —
-  { name: "Internal Audit & GRC", level: 92, category: "Audit" },
-  { name: "Internal Control (COSO)", level: 90, category: "Audit" },
-  { name: "Risk Assessment", level: 88, category: "Audit" },
-  { name: "Fraud Investigation", level: 80, category: "Audit" },
-  { name: "Audit Data Analytics", level: 85, category: "Audit" },
-  { name: "Report & Working Paper", level: 93, category: "Audit" },
-  // — Dunia teknologi —
-  { name: "Python", level: 82, category: "Teknologi" },
-  { name: "SQL & Database", level: 84, category: "Teknologi" },
-  { name: "Web (Next.js / React)", level: 75, category: "Teknologi" },
-  { name: "AI & LLM Tools", level: 86, category: "Teknologi" },
-  { name: "Power BI / Dashboard", level: 80, category: "Teknologi" },
-  { name: "Hardware & Networking", level: 78, category: "Teknologi" },
-  // — Perangkat harian —
-  { name: "Excel / Google Sheets", level: 95, category: "Tools" },
-  { name: "Git & GitHub", level: 78, category: "Tools" },
-  { name: "Docker & Home Lab", level: 70, category: "Tools" },
-  { name: "Obsidian / Notion", level: 88, category: "Tools" },
+export const skillGroups: SkillGroup[] = [
+  {
+    name: "Audit",
+    emoji: "🧾",
+    note: "Disiplin berbasis bukti dan professional skepticism.",
+    items: [
+      "Internal Audit & GRC",
+      "Internal Control (COSO)",
+      "Risk Assessment",
+      "Fraud Investigation",
+      "Audit Data Analytics",
+      "Report & Working Paper",
+    ],
+  },
+  {
+    name: "Teknologi",
+    emoji: "💻",
+    note: "Pengganda produktivitas — sekaligus arena bermain saya.",
+    items: [
+      "Python",
+      "SQL & Database",
+      "Web (Next.js / React)",
+      "AI & LLM",
+      "Power BI / Dashboard",
+      "Hardware & Networking",
+    ],
+  },
+  {
+    name: "Tools Harian",
+    emoji: "🧰",
+    note: "Perangkat yang saya pakai setiap hari untuk menyelesaikan hal.",
+    items: [
+      "Excel / Google Sheets",
+      "Git & GitHub",
+      "Docker & Home Lab",
+      "Obsidian / Notion",
+    ],
+  },
 ];
 
 export const marqueeItems = [

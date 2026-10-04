@@ -2,6 +2,7 @@
 title: "Sistem Saya Belajar Hal Baru Setiap Bulan: IT, Audit, sampai Olahraga"
 date: "2025-12-20"
 tags: ["Produktivitas", "Lifelong Learning"]
+category: "lainnya"
 emoji: "🌱"
 excerpt: "Belajar banyak hal itu mudah dimulai, sulit dilanjutkan. Ini sistem sederhana yang saya pakai supaya tetap konsisten belajar audit, IT, AI, dan menjaga tubuh lewat olahraga — tanpa terbakar habis."
 ---

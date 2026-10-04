@@ -2,6 +2,7 @@
 title: "Mendeteksi Anomali dengan Hukum Benford: dari Excel ke Python"
 date: "2026-01-18"
 tags: ["Audit", "Data Analytics", "Python"]
+category: "audit"
 emoji: "📊"
 excerpt: "Angka-angka asli mengikuti pola matematis yang mengejutkan. Hukum Benford memakai pola itu untuk membantu auditor menemukan data mencurigakan — dan mengimplementasikannya ternyata lebih mudah dari yang dibayangkan."
 ---

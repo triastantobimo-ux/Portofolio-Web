@@ -6,6 +6,7 @@
    ---
    title: "Judul Artikel"
    date: "2026-02-01"
+   category: "audit"  // pilih: audit | teknologi | game | lainnya
    tags: ["Audit", "IT"]
    emoji: "✍️"
    excerpt: "Ringkasan satu-dua kalimat untuk kartu & preview."
@@ -20,6 +21,12 @@ import matter from "gray-matter";
 import { marked } from "marked";
 import { formatArticleDate } from "./format-date";
 
+/* Segmen konten jurnal — metadata kategori tinggal di lib/categories.ts (client-safe) */
+import { ARTICLE_CATEGORIES, type ArticleCategoryId } from "./categories";
+
+export type { ArticleCategoryId, ArticleCategory } from "./categories";
+export { ARTICLE_CATEGORIES, getCategory } from "./categories";
+
 export type ArticleMeta = {
   slug: string;
   title: string;
@@ -27,6 +34,7 @@ export type ArticleMeta = {
   tags: string[];
   emoji: string;
   excerpt: string;
+  category: ArticleCategoryId;
   readingMinutes: number;
 };
 
@@ -50,6 +58,7 @@ export function getArticleMetas(): ArticleMeta[] {
     const raw = fs.readFileSync(path.join(ARTICLES_DIR, file), "utf-8");
     const { data, content } = matter(raw);
 
+    const category = String(data.category ?? "lainnya") as ArticleCategoryId;
     metas.push({
       slug,
       title: String(data.title ?? slug),
@@ -57,16 +66,12 @@ export function getArticleMetas(): ArticleMeta[] {
       tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
       emoji: String(data.emoji ?? "✍️"),
       excerpt: String(data.excerpt ?? ""),
+      category: ARTICLE_CATEGORIES.some((c) => c.id === category) ? category : "lainnya",
       readingMinutes: Math.max(1, Math.round(countWords(content) / 200)),
     });
   }
 
   return metas.sort((a, b) => b.date.localeCompare(a.date));
-}
-
-/* Ambil 3 artikel terbaru untuk section Jurnal di landing page */
-export function getLatestArticles(n = 3): ArticleMeta[] {
-  return getArticleMetas().slice(0, n);
 }
 
 /* Ambil satu artikel lengkap (Markdown sudah dirender ke HTML) */
@@ -76,6 +81,7 @@ export function getArticle(slug: string): Article | null {
 
   const raw = fs.readFileSync(file, "utf-8");
   const { data, content } = matter(raw);
+  const category = String(data.category ?? "lainnya") as ArticleCategoryId;
 
   return {
     slug,
@@ -84,6 +90,7 @@ export function getArticle(slug: string): Article | null {
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     emoji: String(data.emoji ?? "✍️"),
     excerpt: String(data.excerpt ?? ""),
+    category: ARTICLE_CATEGORIES.some((c) => c.id === category) ? category : "lainnya",
     readingMinutes: Math.max(1, Math.round(countWords(content) / 200)),
     html: marked.parse(content, { async: false }) as string,
   };
