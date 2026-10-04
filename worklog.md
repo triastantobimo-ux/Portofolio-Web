@@ -62,3 +62,24 @@ Stage Summary:
 - LIVE: https://portfolio-one-gamma-sgfz0n8ka7.vercel.app (alias stabil)
 - Database production: Neon Postgres (ep-damp-heart-b345beot, region ap-southeast-1)
 - Redeploy di masa depan: scripts/deploy-vercel.sh "<token>" "<url>"
+
+---
+Task ID: 4
+Agent: Super Z (main agent)
+Task: Cari workaround domain gratis yang lebih pendek dan bisa dipilih sendiri (applicable di Vercel)
+
+Work Log:
+- Verifikasi token Vercel masih aktif (akun triastantobimo-7165, user belum revoke)
+- Buat scripts/check_domains.py: cek ketersediaan via DoH (dns.google) + registry is-a.dev (raw.githubusercontent)
+- Temuan kunci: *.vercel.app memakai wildcard DNS (nama acak pun resolve) sehingga cek DNS tidak valid untuk vercel.app; satu-satunya cara = coba klaim via API
+- is-a.dev: 9 nama kandidat tersedia (raka, rakapratama, raka-pratama, pratama, itsraka, byraka, raka-dev, rakap, hey-raka) — cek valid via registry GitHub
+- us.kg: raka.us.kg dkk tampak tersedia (indikatif DNS)
+- Buat scripts/claim-vercel-subdomain.sh: POST /v9/projects/{id}/domains per kandidat
+- raka.vercel.app -> 409 owned-on-other-team; raka-pratama.vercel.app -> 200 BERHASIL DIKLAIM
+- Set redirect 308: portfolio-one-gamma-sgfz0n8ka7.vercel.app -> raka-pratama.vercel.app (PATCH domains API, 200)
+- Smoke test: URL baru 200 + title benar + /api/guestbook 200; URL lama 308 -> raka-pratama.vercel.app
+
+Stage Summary:
+- Domain baru LIVE: https://raka-pratama.vercel.app (gratis, permanen, URL lama auto-redirect 308)
+- Nama lain bisa ditambahkan kapan saja via scripts/claim-vercel-subdomain.sh <nama>
+- Opsi domain gratis komunitas tervalidasi tersedia: is-a.dev (9 nama), us.kg — panduan dikirim ke user
