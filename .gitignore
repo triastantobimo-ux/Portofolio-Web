@@ -21,6 +21,13 @@ db/*.db-journal
 .zscripts
 scripts/verify
 
+# artefak sandbox (bukan bagian source website)
+skills/
+mini-services/
+examples/
+download/
+agent-ctx/
+
 # OS
 .DS_Store
 Thumbs.db

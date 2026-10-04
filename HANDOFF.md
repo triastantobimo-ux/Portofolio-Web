@@ -19,7 +19,8 @@
 | Host | Vercel (proyek `portfolio`) |
 | Bahasa konten | **Indonesia** (seluruh UI & artikel) |
 | Lokasi proyek di mesin ini | `/home/z/my-project` |
-| Status git | Commit terakhir `9127846` / `0a1cbe1` — repo LOKAL, belum ada remote GitHub |
+| Repo GitHub | **https://github.com/triastantobimo-ux/Portofolio-Web** (public, branch `main`) |
+| Status git | Repo ter-push ke GitHub; clone → `git clone https://github.com/triastantobimo-ux/Portofolio-Web.git` |
 
 ---
 
@@ -40,6 +41,7 @@ Di mesin ini tersimpan di file gitignored:
 
 - `/home/z/my-project/.zscripts/vt` → Vercel token
 - `/home/z/my-project/.zscripts/dburl` → Neon pooled connection string
+- `/home/z/my-project/.zscripts/ght` → GitHub PAT (fine-grained, push ke `Portofolio-Web`)
 
 > ⚠️ Untuk handoff: pemilik HARUS membuat token Vercel baru (vercel.com/account/settings/tokens)
 > dan URL Neon baru (dashboard Neon → connection string) untuk pihak/AI baru. Jangan pernah
@@ -255,13 +257,19 @@ atau dashboard Vercel → Settings → Deployment Protection → off.
 1. Ubah konten = edit 2 tempat saja: `src/lib/portfolio.ts` (profil/skills/galeri) dan
    `content/articles/*.md` (jurnal). Tidak perlu menyentuh komponen.
 2. Lihat hasil: `bun run dev` → http://localhost:3000.
-3. Naikkan ke produksi: jalankan script deploy (7), atau pasang GitHub: buat repo di
-   github.com → `git remote add origin <url> && git push -u origin main` → di Vercel
-   "Import Project" → set env `DATABASE_URL` → sejak itu setiap push otomatis deploy.
+3. Naikkan ke produksi: jalankan script deploy (7), atau via GitHub: repo sudah ada di
+   `github.com/triastantobimo-ux/Portofolio-Web` → `git add -A && git commit -m "..." &&
+   git push origin main` (pakai kredensial GitHub sendiri) → di Vercel "Import Project"
+   → set env `DATABASE_URL` → sejak itu setiap push otomatis deploy.
+
+> Catatan: remote `origin` di mesin ini SENGAJA tanpa token di URL (aman). Token GitHub
+> tersimpan terpisah di `.zscripts/ght`; push manual bisa `git push origin main` setelah
+> kredensial di-setup, atau pakai PAT baru dari pemilik.
 
 ### B. Handoff ke AI lain (semacam saya)
 Berikan 4 hal ini:
-1. **Akses kode** — folder proyek ini (atau repo GitHub bila sudah dipush, lihat 10.A langkah 3).
+1. **Akses kode** — clone `https://github.com/triastantobimo-ux/Portofolio-Web.git`
+   (repo public), atau akses folder proyek di mesin ini.
 2. **Dokumen ini** (`HANDOFF-WEBSITE-BIMOGT.md`) — instruksi: "baca dulu sebelum mengubah apa pun".
 3. **Token Vercel BARU** dari pemilik (lama sebaiknya di-revoke).
 4. **Connection string Neon BARU** (pooled, tanpa channel_binding).
