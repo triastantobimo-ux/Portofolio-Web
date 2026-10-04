@@ -24,3 +24,8 @@ scripts/verify
 # OS
 .DS_Store
 Thumbs.db
+.vercel
+.env*
+
+# vercel link (lokal)
+.vercel
