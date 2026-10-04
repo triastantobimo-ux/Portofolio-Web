@@ -7,7 +7,7 @@ import { SectionHeading } from "./section-heading";
 import { TiltCard } from "./tilt-card";
 import { projects } from "@/lib/portfolio";
 
-const filters = ["Semua", "Web App", "UI/UX", "Open Source"] as const;
+const filters = ["Semua", "App", "Tool", "Eksperimen"] as const;
 
 export function Projects() {
   const [filter, setFilter] = useState<(typeof filters)[number]>("Semua");
@@ -18,12 +18,12 @@ export function Projects() {
   );
 
   return (
-    <section id="proyek" className="relative py-20 md:py-28" aria-label="Proyek pilihan">
+    <section id="proyek" className="relative py-20 md:py-28" aria-label="Galeri bangunan">
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <SectionHeading
-          eyebrow="Portofolio"
-          title="Proyek pilihan"
-          description="Beberapa karya yang paling saya banggakan — mulai dari aplikasi web lengkap, eksperimen desain, sampai kontribusi open source."
+          eyebrow="Galeri"
+          title="Apa yang saya bangun"
+          description="Koleksi app, tools, dan eksperimen — dari otomatisasi pekerjaan audit sampai lab teknologi di rumah. Sebagian untuk kerja, sebagian untuk seru-seru, semuanya belajar."
         />
 
         {/* Filter kategori */}
@@ -121,10 +121,15 @@ export function Projects() {
           transition={{ duration: 0.5 }}
           className="mt-10 text-center"
         >
-          <p className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+          <a
+            href="https://github.com/triastantobimo-ux"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
+          >
             <Folder className="size-4 text-primary" aria-hidden />
-            Masih banyak eksperimen lain di beranda GitHub saya — mantapkan kursor dan jelajahi.
-          </p>
+            Eksperimen lainnya berjalan di GitHub saya — jelajahi di triastantobimo-ux.
+          </a>
         </motion.div>
       </div>
     </section>

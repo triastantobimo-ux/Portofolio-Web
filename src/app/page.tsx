@@ -4,11 +4,15 @@ import { About } from "@/components/portfolio/about";
 import { Skills } from "@/components/portfolio/skills";
 import { Projects } from "@/components/portfolio/projects";
 import { Experience } from "@/components/portfolio/experience";
+import { Journal } from "@/components/portfolio/journal";
 import { Guestbook } from "@/components/portfolio/guestbook";
 import { Contact } from "@/components/portfolio/contact";
 import { Footer } from "@/components/portfolio/footer";
+import { getLatestArticles } from "@/lib/articles";
 
 export default function Home() {
+  const latestArticles = getLatestArticles(3);
+
   return (
     <div className="relative flex min-h-screen flex-col">
       {/* Skip link untuk aksesibilitas keyboard */}
@@ -27,6 +31,7 @@ export default function Home() {
         <Skills />
         <Projects />
         <Experience />
+        <Journal articles={latestArticles} />
         <Guestbook />
         <Contact />
       </main>

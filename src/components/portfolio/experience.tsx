@@ -18,7 +18,7 @@ export function Experience() {
         <SectionHeading
           eyebrow="Perjalanan"
           title="Pengalaman kerja"
-          description="Lintasan karier saya dari freelancer sampai engineer senior — setiap langkah mengajarkan sesuatu yang baru."
+          description="Dari bangku pelajar IT, ruang audit, sampai membangun tools sendiri — setiap langkah mengajarkan sesuatu yang baru."
         />
 
         <ol className="relative space-y-8 before:absolute before:top-2 before:bottom-2 before:left-[19px] before:w-px before:bg-gradient-to-b before:from-primary/60 before:via-border before:to-transparent sm:before:left-[23px]">

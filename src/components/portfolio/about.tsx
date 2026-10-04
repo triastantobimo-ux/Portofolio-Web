@@ -70,10 +70,11 @@ export function About() {
                   </div>
                 </div>
                 <p className="text-base leading-relaxed text-muted-foreground text-pretty">
-                  {profile.bio} Ketika tidak menulis kode, saya biasanya mengeksplorasi tren desain
-                  terbaru, berkontribusi di proyek open source, atau berbagi ilmu lewat tulisan.
-                  Saya percaya produk terbaik lahir dari keseimbangan antara engineering yang solid
-                  dan desain yang empatik.
+                  {profile.bio} Di luar audit, dunia IT adalah taman bermain saya — dari
+                  video game, merakit hardware, sampai bereksperimen dengan AI. Rasa
+                  penasaran itu saya salurkan lewat membangun app dan tools kecil,
+                  menulis jurnal, dan menjaga tubuh tetap bergerak; karena otak yang
+                  tajam butuh tubuh yang sehat.
                 </p>
                 <div className="mt-auto flex flex-wrap gap-2">
                   {aboutCards.focus.map((f) => (

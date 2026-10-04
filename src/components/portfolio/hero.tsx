@@ -161,7 +161,7 @@ export function Hero() {
               onClick={() => scrollTo("proyek")}
               className="group rounded-full px-7 text-base shadow-lg shadow-primary/25"
             >
-              Lihat Proyek
+              Lihat Galeri
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
             </Button>
           </Magnetic>

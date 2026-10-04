@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SectionHeading } from "./section-heading";
 import { marqueeItems, skills } from "@/lib/portfolio";
 
-const categories = ["Semua", "Frontend", "Backend", "Tools"] as const;
+const categories = ["Semua", "Audit", "Teknologi", "Tools"] as const;
 
 export function Skills() {
   const [active, setActive] = useState<(typeof categories)[number]>("Semua");
@@ -27,8 +27,8 @@ export function Skills() {
       <div className="relative mx-auto max-w-5xl px-4 sm:px-6">
         <SectionHeading
           eyebrow="Keahlian"
-          title="Perangkat yang saya kuasai"
-          description="Dari antarmuka piksel-perfect sampai API yang andal — ini teknologi yang saya gunakan setiap hari."
+          title="Perangkat yang saya asah"
+          description="Dua dunia yang saling menguatkan: disiplin audit berbasis bukti, dan teknologi yang membuat semuanya lebih cepat."
         />
 
         {/* Tab kategori */}

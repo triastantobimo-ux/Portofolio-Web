@@ -11,8 +11,9 @@ const links = [
   { id: "beranda", label: "Beranda" },
   { id: "tentang", label: "Tentang" },
   { id: "keahlian", label: "Keahlian" },
-  { id: "proyek", label: "Proyek" },
+  { id: "proyek", label: "Galeri" },
   { id: "pengalaman", label: "Pengalaman" },
+  { id: "jurnal", label: "Jurnal" },
   { id: "buku-tamu", label: "Buku Tamu" },
 ];
 
@@ -68,7 +69,13 @@ export function Navbar() {
 
   function go(id: string) {
     setOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Dari halaman lain (mis. /blog), kembali ke beranda di section tujuan
+      window.location.assign(`/#${id}`);
+    }
   }
 
   return (
@@ -97,7 +104,7 @@ export function Navbar() {
           </span>
           <span>
             {profile.firstName.toLowerCase()}
-            <span className="text-primary">.</span>dev
+            <span className="text-primary">gt</span>
           </span>
         </button>
 

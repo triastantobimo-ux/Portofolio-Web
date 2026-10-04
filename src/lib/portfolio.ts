@@ -1,71 +1,83 @@
 /* ============================================================
    DATA PORTOFOLIO — Ubah bagian ini saja untuk mempersonalisasi
-   seluruh isi website (nama, skill, proyek, pengalaman, sosial).
+   seluruh isi website (nama, skill, galeri, pengalaman, sosial).
    ============================================================ */
 
 export const profile = {
   name: "Bimo GT",
   firstName: "Bimo",
   roles: [
-    "Full-Stack Developer",
-    "UI/UX Enthusiast",
-    "Open Source Contributor",
-    "Problem Solver",
+    "Corporate Internal Auditor",
+    "IT Enthusiast",
+    "Tech Tinkerer & Builder",
+    "Lifelong Learner",
   ],
-  bio: "Saya membangun produk digital yang cepat, indah, dan bermanfaat — dari desain antarmuka sampai arsitektur backend. Fokus saya: pengalaman pengguna yang mulus dan kode yang bersih.",
-  location: "Jakarta, Indonesia",
+  bio: "Auditor internal di jam kerja, eksplorator teknologi di luar itu. Saya menggabungkan dunia audit dan IT — video game, hardware, AI — lalu menuangkannya menjadi app, tools, dan jurnal tulisan yang bermanfaat.",
+  location: "Indonesia",
   email: "triastanto.bimo@gmail.com",
-  availability: "Terbuka untuk proyek freelance & kolaborasi",
+  availability: "Terbuka untuk diskusi audit, IT & kolaborasi",
   avatarEmoji: "🧑‍💻",
   resumeNote: "CV lengkap tersedia via email",
 };
 
 export const stats = [
-  { value: 5, suffix: "+", label: "Tahun Pengalaman" },
-  { value: 48, suffix: "+", label: "Proyek Selesai" },
-  { value: 32, suffix: "", label: "Klien Puas" },
-  { value: 12, suffix: "", label: "Kontribusi OSS" },
+  { value: 5, suffix: "+", label: "Tahun di Dunia Audit" },
+  { value: 40, suffix: "+", label: "Proyek Audit Dikerjakan" },
+  { value: 10, suffix: "+", label: "App & Tools Dibangun" },
+  { value: 4, suffix: "", label: "Area Belajar Aktif" },
 ];
 
 export const aboutCards = {
   funFact:
-    "Dulu saya remat kode HTML di notepad waktu SMA — sekarang saya bangun sistem full-stack utuh. Proses belajar nggak pernah berhenti.",
-  currentlyLearning: ["Rust", "WebGPU", "Motion Design"],
-  focus: ["Product Engineering", "Design System", "Performa Web"],
+    "Kariernya di ruang rapat audit, tapi malamnya saya bangun tools untuk otomatisasi pekerjaan sendiri. Sejak itu saya percaya: auditor yang paham teknologi bisa melihat risiko sekaligus peluang yang tersembunyi.",
+  currentlyLearning: [
+    "Python untuk Data Analytics",
+    "AI & LLM untuk Produktivitas",
+    "Home Lab & Self-Hosting",
+    "Menulis yang Lebih Baik",
+  ],
+  focus: ["Internal Audit & Risk", "Data Analytics", "Otomatisasi & AI", "Lifelong Learning"],
 };
 
 export type Skill = {
   name: string;
   level: number; // 0–100
-  category: "Frontend" | "Backend" | "Tools";
+  category: "Audit" | "Teknologi" | "Tools";
 };
 
 export const skills: Skill[] = [
-  { name: "React / Next.js", level: 95, category: "Frontend" },
-  { name: "TypeScript", level: 92, category: "Frontend" },
-  { name: "Tailwind CSS", level: 94, category: "Frontend" },
-  { name: "Framer Motion", level: 86, category: "Frontend" },
-  { name: "Node.js / Bun", level: 90, category: "Backend" },
-  { name: "Prisma / SQL", level: 85, category: "Backend" },
-  { name: "REST / WebSocket", level: 88, category: "Backend" },
-  { name: "Autentikasi (NextAuth)", level: 80, category: "Backend" },
-  { name: "Git & CI/CD", level: 88, category: "Tools" },
-  { name: "Figma", level: 84, category: "Tools" },
-  { name: "Docker", level: 76, category: "Tools" },
-  { name: "Testing (Vitest)", level: 78, category: "Tools" },
+  // — Dunia audit —
+  { name: "Internal Audit & GRC", level: 92, category: "Audit" },
+  { name: "Internal Control (COSO)", level: 90, category: "Audit" },
+  { name: "Risk Assessment", level: 88, category: "Audit" },
+  { name: "Fraud Investigation", level: 80, category: "Audit" },
+  { name: "Audit Data Analytics", level: 85, category: "Audit" },
+  { name: "Report & Working Paper", level: 93, category: "Audit" },
+  // — Dunia teknologi —
+  { name: "Python", level: 82, category: "Teknologi" },
+  { name: "SQL & Database", level: 84, category: "Teknologi" },
+  { name: "Web (Next.js / React)", level: 75, category: "Teknologi" },
+  { name: "AI & LLM Tools", level: 86, category: "Teknologi" },
+  { name: "Power BI / Dashboard", level: 80, category: "Teknologi" },
+  { name: "Hardware & Networking", level: 78, category: "Teknologi" },
+  // — Perangkat harian —
+  { name: "Excel / Google Sheets", level: 95, category: "Tools" },
+  { name: "Git & GitHub", level: 78, category: "Tools" },
+  { name: "Docker & Home Lab", level: 70, category: "Tools" },
+  { name: "Obsidian / Notion", level: 88, category: "Tools" },
 ];
 
 export const marqueeItems = [
-  "Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js", "Bun",
-  "Prisma", "PostgreSQL", "WebSocket", "Docker", "Figma", "Vitest",
-  "Framer Motion", "Zustand", "Git", "shadcn/ui",
+  "Internal Audit", "Risk Management", "COSO", "Python", "SQL", "Excel",
+  "Power BI", "AI & LLM", "Next.js", "Docker", "Home Lab", "Git",
+  "Obsidian", "Video Game", "Olahraga",
 ];
 
 export type Project = {
   title: string;
   description: string;
   tags: string[];
-  category: "Web App" | "UI/UX" | "Open Source";
+  category: "App" | "Tool" | "Eksperimen";
   emoji: string;
   gradient: string; // kelas tailwind gradient untuk cover
   link: string;
@@ -73,99 +85,91 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "Nusantara Eats",
+    title: "Audit Sampling Helper",
     description:
-      "Platform pemesanan makanan UMKM lokal dengan pelacakan real-time, integrasi pembayaran, dan dashboard penjual yang lengkap.",
-    tags: ["Next.js", "Prisma", "WebSocket"],
-    category: "Web App",
-    emoji: "🍜",
+      "Tool sampling dan analisis data transaksi untuk kebutuhan audit: random sampling, deteksi duplikasi, dan uji distribusi Benford dalam sekali jalan.",
+    tags: ["Python", "Excel", "Benford"],
+    category: "Tool",
+    emoji: "🧮",
     gradient: "from-emerald-500/30 via-teal-500/20 to-amber-400/30",
     link: "#",
   },
   {
-    title: "SahamKu Analytics",
+    title: "AI Meeting Notes",
     description:
-      "Dashboard analisis saham dengan visualisasi candlestick interaktif, screener saham, dan alarm harga otomatis.",
-    tags: ["React", "Recharts", "API"],
-    category: "Web App",
-    emoji: "📈",
+      "Ringkasan rapat otomatis dengan LLM: transkrip berubah menjadi poin keputusan, tindak lanjut, dan daftar risiko yang siap dibawa ke working paper.",
+    tags: ["LLM", "Python", "Whisper"],
+    category: "App",
+    emoji: "🤖",
     gradient: "from-amber-400/30 via-orange-400/20 to-emerald-500/30",
     link: "#",
   },
   {
-    title: "Loka Design System",
+    title: "Checklist Audit Digital",
     description:
-      "Design system open-source berisi 60+ komponen React yang dapat diakses (a11y), terdokumentasi, dan siap produksi.",
-    tags: ["TypeScript", "A11y", "Storybook"],
-    category: "Open Source",
-    emoji: "🎨",
+      "Working paper digital: checklist audit interaktif dengan pelacakan temuan, keterangan, dan status tindak lanjut per entitas.",
+    tags: ["Next.js", "Prisma", "Workflow"],
+    category: "Tool",
+    emoji: "✅",
     gradient: "from-teal-500/30 via-emerald-400/20 to-lime-300/30",
     link: "#",
   },
   {
-    title: "Redesign Bank Digital",
+    title: "Expense Tracker PWA",
     description:
-      "Studi kasus redesain aplikasi mobile banking: riset pengguna, prototipe hi-fi, dan uji kegunaan bersama 24 responden.",
-    tags: ["Figma", "UX Research", "Prototyping"],
-    category: "UI/UX",
-    emoji: "🏦",
+      "Aplikasi pencatat keuangan pribadi offline-first: input cepat, visualisasi bulanan, dan ekspor laporan — jadi proyek belajar PWA sekaligus.",
+    tags: ["React", "PWA", "IndexedDB"],
+    category: "App",
+    emoji: "💰",
     gradient: "from-emerald-400/30 via-cyan-500/20 to-amber-300/30",
     link: "#",
   },
   {
-    title: "Pomodoro Focus",
+    title: "Home Lab Mini Server",
     description:
-      "Aplikasi produktivitas offline-first dengan statistik fokus, suara ambien, dan sinkronisasi lintas perangkat.",
-    tags: ["PWA", "IndexedDB", "React"],
-    category: "Web App",
-    emoji: "⏱️",
+      "Server rumahan untuk belajar networking dan self-hosting: NAS pribadi, dashboard monitoring, backup otomatis, dan container lab.",
+    tags: ["Docker", "Linux", "NAS"],
+    category: "Eksperimen",
+    emoji: "🖥️",
     gradient: "from-lime-400/30 via-emerald-500/20 to-teal-500/30",
     link: "#",
   },
   {
-    title: "CLI Toolkit",
+    title: "Website bimogt",
     description:
-      "Kumpulan tooling CLI open-source untuk mempercepat scaffolding proyek dan migrasi basis data tim kecil.",
-    tags: ["Node.js", "Bun", "OSS"],
-    category: "Open Source",
-    emoji: "🛠️",
+      "Situs yang sedang kamu lihat: portofolio, galeri bangunan, dan jurnal tulisan — laboratorium web yang saya rawat terus-menerus.",
+    tags: ["Next.js 16", "Tailwind 4", "Vercel"],
+    category: "App",
+    emoji: "🌐",
     gradient: "from-amber-300/30 via-emerald-500/20 to-cyan-500/30",
-    link: "#",
+    link: "https://bimogt.vercel.app",
   },
 ];
 
 export const experience = [
   {
-    role: "Senior Frontend Engineer",
-    company: "Tokopikir Studio",
-    period: "2023 — Sekarang",
+    role: "Corporate Internal Auditor",
+    company: "Perusahaan Multiindustri Nasional",
+    period: "2022 — Sekarang",
     description:
-      "Memimpin pengembangan design system yang dipakai 6 produk internal, meningkatkan kecepatan rilis fitur hingga 40%. Mentor untuk 4 engineer junior.",
-    tech: ["Next.js", "TypeScript", "Design System"],
+      "Menyusun rencana audit tahunan berbasis pemetaan risiko, mengeksekusi audit operasional dan kepatuhan lintas unit, serta memastikan tindak lanjut temuan berjalan efektif. Membangun tools internal untuk analisis data agar pekerjaan audit lebih cepat dan berbasis bukti.",
+    tech: ["Internal Audit", "Risk Assessment", "Data Analytics"],
   },
   {
-    role: "Full-Stack Developer",
-    company: "Sawala Tech",
-    period: "2021 — 2023",
+    role: "Staff Auditor",
+    company: "Kantor Akuntan Publik",
+    period: "2020 — 2022",
     description:
-      "Membangun dari nol platform marketplace B2B dengan Node.js & React: sistem pembayaran, notifikasi real-time, dan panel admin. Melayani 12K+ pengguna aktif.",
-    tech: ["React", "Node.js", "PostgreSQL"],
+      "Menjalankan pemeriksaan laporan keuangan klien dari berbagai industri: pengujian sampel, verifikasi bukti audit, dokumentasi working paper, dan komunikasi temuan kepada manajer audit. Fondasi disiplin bukti yang sekarang saya bawa ke mana-mana.",
+    tech: ["Financial Audit", "Sampling", "Working Paper"],
   },
   {
-    role: "Frontend Developer",
-    company: "Kreatif Bangsa",
-    period: "2020 — 2021",
+    role: "IT Support & Freelance",
+    company: "Mandiri / Komunitas",
+    period: "2018 — 2020",
     description:
-      "Mengerjakan 20+ landing page dan aplikasi web untuk klien dari berbagai industri. Fokus pada performa (Core Web Vitals hijau di semua proyek).",
-    tech: ["Vue", "SCSS", "GSAP"],
-  },
-  {
-    role: "Freelance Web Developer",
-    company: "Mandiri",
-    period: "2019 — 2020",
-    description:
-      "Memulai karier dengan proyek website UMKM dan komunitas. Belajar menangani klien, estimasi, dan melihat kode sebagai produk.",
-    tech: ["HTML/CSS", "JavaScript", "WordPress"],
+      "Perjalanan hobi jadi keahlian: merakit PC, troubleshooting hardware-software, membangun website kecil, dan membantu UMKM sekitar. Dari sini saya sadar teknologi adalah pengganda produktivitas — termasuk untuk dunia audit.",
+    tech: ["Hardware", "Troubleshooting", "Web"],
   },
 ];
 
