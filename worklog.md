@@ -103,3 +103,27 @@ Stage Summary:
 - LIVE final: https://bimogt.vercel.app (URL lama & raka-pratama juga terpasang, redirect 308)
 - Situs sepenuhnya dipersonalisasi ke identitas Bimo GT; konten proyek/pengalaman masih demo, tinggal diedit di src/lib/portfolio.ts
 - Catatan: Deployment Protection di project Vercel dimatikan agar situs publik
+
+---
+Task ID: 6
+Agent: Super Z (main agent)
+Task: Restrukturisasi identitas situs (Internal Auditor + IT Enthusiast) & fitur jurnal artikel + galeri bangunan
+
+Work Log:
+- Load skill fullstack-dev & agent-browser; baca seluruh komponen terkait
+- Rewrite portfolio.ts: roles (Corporate Internal Auditor, IT Enthusiast, Tech Tinkerer, Lifelong Learner), bio baru, stats (5+ thn audit, 40+ proyek audit, 10+ app/tools, 4 area belajar), skills 3 kategori (Audit/Teknologi/Tools, 16 item: COSO, GRC, Benford, Python, SQL, AI & LLM, Home Lab...), galeri 6 item (Audit Sampling Helper, AI Meeting Notes, Checklist Audit Digital, Expense Tracker PWA, Home Lab, Website bimogt) kategori App/Tool/Eksperimen, experience karier auditor (Internal Auditor - Perusahaan Multiindustri Nasional, Staff Auditor - KAP, IT Support & Freelance)
+- Install gray-matter + marked; buat lib/articles.ts (frontmatter, reading time, marked render) + lib/format-date.ts (pure, aman client)
+- 3 artikel seed di content/articles/ (Mengapa Auditor Perlu Teknologi; Hukum Benford Excel->Python; Sistem Belajar Hal Baru Setiap Bulan)
+- Route /blog (list kartu artikel) + /blog/[slug] (detail, generateStaticParams, generateMetadata, Next 16 async params)
+- Komponen Journal (client, props dari server) di landing setelah Pengalaman; navbar +link Jurnal & fallback go() -> /#id dari halaman lain; brand bimo.dev -> bimogt
+- Fix 1: fs not found — journal (client) jangan import lib ber-fs; pisah format-date.ts
+- Fix 2: marker list artikel hilang — hapus display:grid pada ul/ol .article-body
+- Update hero (Lihat Galeri), about (cerita audit+IT+olahraga), skills (tab Audit/Teknologi/Tools), projects (filter App/Tool/Eksperimen + CTA GitHub), experience (desc), layout (metadata auditor)
+- Lint bersih; agent-browser: hero/keahlian tab Audit/jurnal/kartu/detail artikel/mobile 390px semua ok, console bersih
+- Commit 0b59a5f; deploy production 49s aliased bimogt.vercel.app
+- Smoke test production: beranda 200, /blog 200, detail 200, artikel tampil di landing, 0 sisa teks lama
+
+Stage Summary:
+- LIVE: https://bimogt.vercel.app — identitas Internal Auditor + IT Enthusiast multidisiplin
+- Fitur baru: jurnal artikel file-based (tambah artikel = buat file .md di content/articles/, frontmatter title/date/tags/emoji/excerpt), /blog + halaman detail, section Jurnal di landing
+- Galeri bangunan: App/Tool/Eksperimen (6 item, link bisa diisi nanti)
