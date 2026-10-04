@@ -127,3 +127,23 @@ Stage Summary:
 - LIVE: https://bimogt.vercel.app — identitas Internal Auditor + IT Enthusiast multidisiplin
 - Fitur baru: jurnal artikel file-based (tambah artikel = buat file .md di content/articles/, frontmatter title/date/tags/emoji/excerpt), /blog + halaman detail, section Jurnal di landing
 - Galeri bangunan: App/Tool/Eksperimen (6 item, link bisa diisi nanti)
+
+---
+Task ID: 7
+Agent: Super Z (main agent)
+Task: Sederhanakan section Keahlian (hapus % & bar) + 10 artikel jurnal baru (IT, game, audit) + sistem kategori segmen di jurnal
+
+Work Log:
+- Skills: hapus field level & bar progres & tab filter; portfolio.ts kini punya skillGroups (Audit/Teknologi/Tools Harian, emoji+note+items); skills.tsx jadi 3 kartu kelompok berisi chip list sederhana, marquee dipertahankan
+- Buat lib/categories.ts (client-safe, tanpa fs): ArticleCategoryId audit|teknologi|game|lainnya, ARTICLE_CATEGORIES (label, emoji, deskripsi, badge warna amber/emerald/cyan/rose), getCategory(); articles.ts re-export + baca frontmatter category (fallback lainnya)
+- 10 artikel baru di content/articles/: prompt-llm-untuk-kerja-sehari-hari (teknologi), home-lab-belajar-it-serius (teknologi), game-mengajarkan-berpikir-sistem (game), sampling-yang-bisa-dipertanggungjawabkan (audit), sql-100-baris-untuk-auditor (audit), password-manager-dan-2fa (teknologi), retro-gaming-pelajaran-dari-konsol-lawas (game), power-query-working-paper (audit), dari-gamer-ke-builder (game), continuous-auditing-audit-yang-hidup (audit); tanggal disebar 2025-11 s.d. 2026-09
+- 3 artikel lama diberi frontmatter category (2 audit, 1 lainnya); total 13 artikel: audit 6, teknologi 3, game 3, lainnya 1
+- journal.tsx didesain ulang "kategori dulu": 5 kartu segmen (Semua + 4 kategori, emoji tile berwarna, deskripsi, jumlah tulisan, state aktif highlight) lalu grid artikel terfilter (AnimatePresence popLayout) dengan badge kategori berwarna di tiap kartu; prop showAllLink
+- page.tsx kini getArticleMetas() (semua 13 artikel); /blog dipangkulkan ke komponen Journal (showAllLink=false); detail artikel dapat badge kategori di header
+- Verifikasi: lint bersih; agent-browser desktop+mobile 390px: skills simpel, kartu kategori, filter Game hanya 3 artikel, /blog & detail ok; dev.log tanpa error
+- Deploy produksi 200; entri uji "Deploy Bot" (4) dihapus dari Neon via prisma db execute; untrack upload/ + gitignore
+- Commit 0a1cbe1
+
+Stage Summary:
+- LIVE: https://bimogt.vercel.app — Keahlian jadi list sederhana tanpa %/bar; Jurnal kini 13 artikel terbagi 4 segmen dengan navigasi kategori dulu baru isi
+- Menambah jurnal baru: buat file .md di content/articles/ dengan frontmatter (wajib category: audit|teknologi|game|lainnya)
