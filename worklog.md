@@ -147,3 +147,17 @@ Work Log:
 Stage Summary:
 - LIVE: https://bimogt.vercel.app — Keahlian jadi list sederhana tanpa %/bar; Jurnal kini 13 artikel terbagi 4 segmen dengan navigasi kategori dulu baru isi
 - Menambah jurnal baru: buat file .md di content/articles/ dengan frontmatter (wajib category: audit|teknologi|game|lainnya)
+
+---
+Task ID: 8
+Agent: Super Z (main agent)
+Task: Dokumen handoff (walkthrough manual + instruksi teknis .md untuk AI)
+
+Work Log:
+- Verifikasi fakta teknis: package.json scripts, deploy-vercel.sh, .vercel/project.json (prj_uupA2P8rc8lldjZwzKXV7WeYCxSo), .zscripts (vt/dburl), scripts list, git remote = none (repo lokal)
+- Tulis download/HANDOFF-WEBSITE-BIMOGT.md (11 bagian): ringkasan, identitas Vercel/Neon non-rahasia, peta file, cara kerja sistem (portfolio.ts terpusat, artikel file-based + kategori wajib, dual-schema Prisma, keputusan desain pemilik yang tak boleh dibatalkan), setup lokal, resep tugas rutin, deploy produksi + verifikasi, keamanan repo, checklist mutu, 2 skenario handoff + prompt pembuka AI, riwayat versi
+- Kredensial sengaja TIDAK ditulis di dokumen; diarahkan ke .zscripts/vt & .zscripts/dburl + instruksi rotasi token
+- Salin ke root sebagai HANDOFF.md (ikut repo) + commit
+
+Stage Summary:
+- Deliverable: download/HANDOFF-WEBSITE-BIMOGT.md & HANDOFF.md (isi sama) — dokumen handoff lengkap, siap diberikan ke AI/developer baru
