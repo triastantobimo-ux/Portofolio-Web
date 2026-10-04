@@ -41,3 +41,24 @@ Work Log:
 Stage Summary:
 - Repo siap push ke GitHub & import ke Vercel; user hanya perlu: buat DB Neon gratis → set env DATABASE_URL → deploy
 - Schema SQLite lokal dipertahankan agar preview sandbox tetap berfungsi
+
+---
+Task ID: 3
+Agent: Super Z (main agent)
+Task: Deploy otomatis ke Vercel atas kredensial yang diberikan user
+
+Work Log:
+- Verifikasi Vercel token (akun: triastantobimo-7165); kredensial disimpan di .zscripts/ (gitignored, vercelignored)
+- Strip param channel_binding dari Neon URL (kompatibilitas Prisma); pakai host direct (tanpa -pooler) untuk db push
+- `prisma db push --schema=prisma/schema.postgres.prisma` ke Neon: tabel GuestbookEntry & SiteStats dibuat
+- `vercel link --project portfolio` (prj_uupA2P8rc8lldjZwzKXV7WeYCxSo)
+- Set env DATABASE_URL production (pooled URL + pgbouncer=true)
+- `vercel --prod`: Build Completed 47s
+- Smoke test live: homepage 200, title benar, POST /api/visits {"views":1}, POST /api/guestbook tersimpan di Neon
+- Restore lokal: hapus .env.local (vercel env add membuatnya; akan mengoverride .env lokal), regenerasi Prisma client SQLite, preview lokal 200
+- Git: untrack .vercel, tambah .gitignore entry, commit
+
+Stage Summary:
+- LIVE: https://portfolio-one-gamma-sgfz0n8ka7.vercel.app (alias stabil)
+- Database production: Neon Postgres (ep-damp-heart-b345beot, region ap-southeast-1)
+- Redeploy di masa depan: scripts/deploy-vercel.sh "<token>" "<url>"
