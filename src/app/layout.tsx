@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://bimogt.vercel.app"),
   title: `${profile.name} — Portofolio Pribadi`,
   description:
     "Website portofolio pribadi yang modern, ringan, dan interaktif. Full-stack developer yang membangun produk digital cepat, indah, dan bermanfaat.",

@@ -4,8 +4,8 @@
    ============================================================ */
 
 export const profile = {
-  name: "Raka Pratama",
-  firstName: "Raka",
+  name: "Bimo GT",
+  firstName: "Bimo",
   roles: [
     "Full-Stack Developer",
     "UI/UX Enthusiast",
@@ -14,7 +14,7 @@ export const profile = {
   ],
   bio: "Saya membangun produk digital yang cepat, indah, dan bermanfaat — dari desain antarmuka sampai arsitektur backend. Fokus saya: pengalaman pengguna yang mulus dan kode yang bersih.",
   location: "Jakarta, Indonesia",
-  email: "halo@rakapratama.dev",
+  email: "triastanto.bimo@gmail.com",
   availability: "Terbuka untuk proyek freelance & kolaborasi",
   avatarEmoji: "🧑‍💻",
   resumeNote: "CV lengkap tersedia via email",
@@ -170,8 +170,6 @@ export const experience = [
 ];
 
 export const socials = [
-  { label: "GitHub", href: "https://github.com", icon: "github" },
-  { label: "LinkedIn", href: "https://linkedin.com", icon: "linkedin" },
-  { label: "Instagram", href: "https://instagram.com", icon: "instagram" },
-  { label: "Email", href: `mailto:halo@rakapratama.dev`, icon: "mail" },
+  { label: "GitHub", href: "https://github.com/triastantobimo-ux", icon: "github" },
+  { label: "Email", href: `mailto:triastanto.bimo@gmail.com`, icon: "mail" },
 ] as const;
