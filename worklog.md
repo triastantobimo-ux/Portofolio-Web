@@ -181,3 +181,19 @@ Work Log:
 Stage Summary:
 - Repo GitHub LIVE: https://github.com/triastantobimo-ux/Portofolio-Web (public, main) — source bersih 116 file + HANDOFF.md + README.md
 - Remote origin aman tanpa token; token di .zscripts/ght; handoff kini cukup: clone repo + beri PAT Vercel/Neon baru + HANDOFF.md
+
+---
+Task ID: 10
+Agent: Super Z (main agent)
+Task: Revisi UI — light mode abu kalem + kartu jurnal compact
+
+Work Log:
+- globals.css light theme: background oklch(0.982 0.005 130)→(0.953 0.005 140), card/popover 1.0→0.988, secondary/muted 0.945→0.925, accent 0.93→0.91, border 0.89→0.878, muted-foreground 0.5→0.48; primary/ring/chart/glow/grid-line/semua animasi TIDAK diubah
+- journal.tsx: kartu segmen p-4→p-3, gap-3→2.5, tile size-9→8; kartu artikel p-6 rounded-3xl→p-4 rounded-2xl, tile size-12→9 text-2xl→xl, badge px-2.5 py-1→px-2 py-0.5, title base→sm, meta mt-2→1.5 icon 3.5→3, excerpt line-clamp-3 sm→clamp-2 [13px], tags pt-4→3 chip px-1.5 py-0.5; hover/AnimatePresence/badge warna tetap
+- Troubleshooting: restart dev gagal EADDRINUSE (bun kill tak matikan child next) → pkill next dev; CSS stale dari cache Turbopack persisten → rm -rf .next lalu restart, served.css terkonfirmasi #eef0ed
+- Verifikasi (agent-browser session baru): light hero (grey kalem, glow & CTA tetap), jurnal light desktop (padding 16px terukur, excerpt clamp 2 baris), dark mode tak berubah (lab 2.83), mobile 390px ok, filter Game via snapshot ref @e73 → 3 artikel, errors kosong, lint bersih
+- Commit e698829 + push GitHub; deploy produksi sukses; smoke test bimogt.vercel.app 200; CSS produksi #eef0ed (light) & #050c0a (dark); entri uji Deploy Bot dihapus dari Neon (prisma db execute --url, tanpa --schema)
+
+Stage Summary:
+- LIVE: https://bimogt.vercel.app — light mode abu terang kalem (0.953) tanpa mengubah satu pun interaksi warna/animasi; kartu jurnal compact hemat ruang, desain & badge kategori tetap
+- Pelajaran: ubah globals.css tidak ter-pickup bila .next cache Turbopack stale → selalu rm -rf .next saat revisi tema tak muncul
