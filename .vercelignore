@@ -1,0 +1,14 @@
+# Jangan pernah upload data sensitif & artefak sandbox ke Vercel
+.env
+.env*.local
+db
+.zscripts
+scripts
+download
+examples
+tests
+*.log
+.DS_Store
+README.md
+Caddyfile
+.vercel
