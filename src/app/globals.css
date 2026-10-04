@@ -46,37 +46,37 @@
 
 :root {
   --radius: 1rem;
-  /* Light theme — kertas hangat dengan aksen emerald */
-  --background: oklch(0.982 0.005 130);
+  /* Light theme — abu terang kalem & tenang di mata; aksen/animasi tetap */
+  --background: oklch(0.953 0.005 140);
   --foreground: oklch(0.22 0.015 165);
-  --card: oklch(1 0 0);
+  --card: oklch(0.988 0.003 145);
   --card-foreground: oklch(0.22 0.015 165);
-  --popover: oklch(1 0 0);
+  --popover: oklch(0.988 0.003 145);
   --popover-foreground: oklch(0.22 0.015 165);
   --primary: oklch(0.55 0.13 163);
   --primary-foreground: oklch(0.99 0.005 150);
-  --secondary: oklch(0.945 0.01 150);
+  --secondary: oklch(0.925 0.008 145);
   --secondary-foreground: oklch(0.3 0.02 165);
-  --muted: oklch(0.945 0.01 150);
-  --muted-foreground: oklch(0.5 0.02 160);
-  --accent: oklch(0.93 0.035 155);
+  --muted: oklch(0.925 0.008 145);
+  --muted-foreground: oklch(0.48 0.02 160);
+  --accent: oklch(0.91 0.028 155);
   --accent-foreground: oklch(0.3 0.03 165);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.89 0.012 155);
-  --input: oklch(0.89 0.012 155);
+  --border: oklch(0.878 0.01 150);
+  --input: oklch(0.878 0.01 150);
   --ring: oklch(0.55 0.13 163);
   --chart-1: oklch(0.55 0.13 163);
   --chart-2: oklch(0.79 0.16 86);
   --chart-3: oklch(0.627 0.194 149.214);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.696 0.17 162.48);
-  --sidebar: oklch(0.982 0.005 130);
+  --sidebar: oklch(0.953 0.005 140);
   --sidebar-foreground: oklch(0.22 0.015 165);
   --sidebar-primary: oklch(0.55 0.13 163);
   --sidebar-primary-foreground: oklch(0.99 0.005 150);
-  --sidebar-accent: oklch(0.93 0.035 155);
+  --sidebar-accent: oklch(0.91 0.028 155);
   --sidebar-accent-foreground: oklch(0.3 0.03 165);
-  --sidebar-border: oklch(0.89 0.012 155);
+  --sidebar-border: oklch(0.878 0.01 150);
   --sidebar-ring: oklch(0.55 0.13 163);
   --grid-line: oklch(0.2 0.02 165 / 5.5%);
   --glow-1: oklch(0.7 0.17 162 / 16%);

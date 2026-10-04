@@ -55,22 +55,22 @@ export function Journal({
         <div
           role="tablist"
           aria-label="Kategori jurnal"
-          className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5"
+          className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5"
         >
           {/* Kartu "Semua" */}
           <button
             role="tab"
             aria-selected={isAll}
             onClick={() => setActive("semua")}
-            className={`group rounded-2xl border p-4 text-left transition-all duration-300 ${
+            className={`group rounded-2xl border p-3 text-left transition-all duration-300 ${
               isAll
                 ? "border-primary/60 bg-primary/10 shadow-lg shadow-primary/10"
                 : "bg-card/60 hover:-translate-y-0.5 hover:border-primary/30"
             }`}
           >
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2">
               <span
-                className={`grid size-9 shrink-0 place-items-center rounded-xl border text-lg transition-colors ${
+                className={`grid size-8 shrink-0 place-items-center rounded-xl border text-base transition-colors ${
                   isAll
                     ? "border-primary/30 bg-primary/15"
                     : "border-primary/20 bg-primary/10"
@@ -87,7 +87,7 @@ export function Journal({
                 </p>
               </div>
             </div>
-            <p className="mt-2 hidden text-xs leading-snug text-muted-foreground sm:block">
+            <p className="mt-1.5 hidden text-xs leading-snug text-muted-foreground sm:block">
               Semua tulisan dari berbagai segmen.
             </p>
           </button>
@@ -101,15 +101,15 @@ export function Journal({
                 role="tab"
                 aria-selected={selected}
                 onClick={() => setActive(c.id)}
-                className={`group rounded-2xl border p-4 text-left transition-all duration-300 ${
+                className={`group rounded-2xl border p-3 text-left transition-all duration-300 ${
                   selected
                     ? "border-primary/60 bg-primary/10 shadow-lg shadow-primary/10"
                     : "bg-card/60 hover:-translate-y-0.5 hover:border-primary/30"
                 }`}
               >
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2">
                   <span
-                    className={`grid size-9 shrink-0 place-items-center rounded-xl border text-lg transition-transform duration-300 ${c.badge} ${
+                    className={`grid size-8 shrink-0 place-items-center rounded-xl border text-base transition-transform duration-300 ${c.badge} ${
                       selected ? "scale-110" : "group-hover:scale-105"
                     }`}
                     role="img"
@@ -124,7 +124,7 @@ export function Journal({
                     </p>
                   </div>
                 </div>
-                <p className="mt-2 hidden text-xs leading-snug text-muted-foreground sm:block">
+                <p className="mt-1.5 hidden text-xs leading-snug text-muted-foreground sm:block">
                   {c.description}
                 </p>
               </button>
@@ -133,7 +133,7 @@ export function Journal({
         </div>
 
         {/* ── ISI: artikel sesuai segmen terpilih ── */}
-        <motion.div layout className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
+        <motion.div layout className="mt-6 grid grid-cols-1 gap-3.5 md:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {filtered.map((a, i) => {
               const cat = ARTICLE_CATEGORIES.find((c) => c.id === a.category);
@@ -149,54 +149,54 @@ export function Journal({
                 >
                   <Link
                     href={`/blog/${a.slug}`}
-                    className="group glass flex h-full flex-col rounded-3xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5"
+                    className="group glass flex h-full flex-col rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5"
                   >
-                    <div className="mb-4 flex items-center justify-between">
+                    <div className="mb-3 flex items-center justify-between">
                       <span
-                        className="grid size-12 place-items-center rounded-2xl bg-gradient-to-br from-primary/25 to-chart-2/25 text-2xl ring-1 ring-primary/20"
+                        className="grid size-9 place-items-center rounded-xl bg-gradient-to-br from-primary/25 to-chart-2/25 text-xl ring-1 ring-primary/20"
                         role="img"
                         aria-label={`Ikon artikel ${a.title}`}
                       >
                         {a.emoji}
                       </span>
                       <ArrowUpRight
-                        className="size-4 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
+                        className="size-3.5 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
                         aria-hidden
                       />
                     </div>
 
                     {cat && (
                       <span
-                        className={`mb-2.5 inline-flex w-fit items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-medium ${cat.badge}`}
+                        className={`mb-2 inline-flex w-fit items-center gap-1.5 rounded-full border px-2 py-0.5 text-[10px] font-medium ${cat.badge}`}
                       >
                         {cat.label}
                       </span>
                     )}
 
-                    <h3 className="text-base font-bold tracking-tight text-balance transition-colors group-hover:text-primary">
+                    <h3 className="text-sm font-bold tracking-tight text-balance transition-colors group-hover:text-primary">
                       {a.title}
                     </h3>
 
-                    <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+                    <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
                       <span className="inline-flex items-center gap-1.5">
-                        <CalendarDays className="size-3.5 text-primary" aria-hidden />
+                        <CalendarDays className="size-3 text-primary" aria-hidden />
                         {formatArticleDate(a.date)}
                       </span>
                       <span className="inline-flex items-center gap-1.5">
-                        <Clock className="size-3.5 text-primary" aria-hidden />
+                        <Clock className="size-3 text-primary" aria-hidden />
                         {a.readingMinutes} menit
                       </span>
                     </div>
 
-                    <p className="mt-2.5 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+                    <p className="mt-2 line-clamp-2 text-[13px] leading-relaxed text-muted-foreground">
                       {a.excerpt}
                     </p>
 
-                    <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
+                    <div className="mt-auto flex flex-wrap gap-1.5 pt-3">
                       {a.tags.slice(0, 3).map((t) => (
                         <span
                           key={t}
-                          className="rounded-md bg-secondary px-2 py-1 font-mono text-[10px] text-secondary-foreground"
+                          className="rounded-md bg-secondary px-1.5 py-0.5 font-mono text-[10px] text-secondary-foreground"
                         >
                           {t}
                         </span>
