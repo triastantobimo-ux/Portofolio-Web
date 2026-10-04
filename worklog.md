@@ -23,3 +23,21 @@ Stage Summary:
 - Website portofolio single-page di `src/app/page.tsx` (satu-satunya route), data di `src/lib/portfolio.ts`
 - 3 API + 2 tabel database berfungsi terverifikasi end-to-end
 - Lint bersih, tanpa error runtime; siap dipersonalisasi dengan mengedit `src/lib/portfolio.ts`
+
+---
+Task ID: 2
+Agent: Super Z (main agent)
+Task: Menyiapkan project agar siap deploy ke Vercel
+
+Work Log:
+- Analisis kendala: SQLite file-based tidak persisten di Vercel (filesystem serverless read-only/ephemeral)
+- Buat `prisma/schema.postgres.prisma` (provider postgresql, model sama persis) untuk production di Neon Postgres
+- `next.config.ts`: `output: "standalone"` hanya aktif di luar Vercel (kondisional `process.env.VERCEL`)
+- `package.json`: tambah script `vercel-build` (generate client postgres + db push otomatis + next build)
+- Buat `.gitignore` (node_modules, .next, .env, db/*.db, log, artefak verifikasi)
+- `src/lib/db.ts`: log query hanya di development
+- Verifikasi: homepage 200, API visits & guestbook tetap berfungsi, entri test dihapus
+
+Stage Summary:
+- Repo siap push ke GitHub & import ke Vercel; user hanya perlu: buat DB Neon gratis → set env DATABASE_URL → deploy
+- Schema SQLite lokal dipertahankan agar preview sandbox tetap berfungsi
