@@ -161,3 +161,23 @@ Work Log:
 
 Stage Summary:
 - Deliverable: download/HANDOFF-WEBSITE-BIMOGT.md & HANDOFF.md (isi sama) — dokumen handoff lengkap, siap diberikan ke AI/developer baru
+
+---
+Task ID: 9
+Agent: Super Z (main agent)
+Task: Push repo ke GitHub (Portofolio-Web) sebagai bagian handoff — user memberi GitHub PAT
+
+Work Log:
+- Simpan PAT ke .zscripts/ght (gitignored, chmod 600); validasi via API → akun triastantobimo-ux
+- Scan rahasia di tracked files (token Vercel, URL Neon, pola kredensial) + isi zip download/ → BERSIH
+- Token fine-grained tidak punya izin create repo; temukan repo existing triastantobimo-ux/Portofolio-Web (public, hampir kosong: hanya README auto-init, dibuat user hari itu) → gunakan sebagai target
+- Buat README.md proper (pengantar, tech stack, cara jalanin lokal, cara nambah artikel, arahkan ke HANDOFF.md)
+- git remote add origin (URL bersih TANPA token di config); push main pakai token sekali-pakai di URL push, force atas commit auto-init
+- Untrack artefak sandbox: skills/ (61MB!), mini-services/, examples/, download/ + gitignore → tracked files 1197 → 116
+- Update HANDOFF.md: baris repo GitHub + clone, daftar kredensial + .zscripts/ght, skenario 10.A (push origin main), 10.B (clone repo)
+- Push ulang; verifikasi API: repo public main OK, HANDOFF.md terupdate di GitHub, 13 artikel lengkap
+- Commit: README + chore cleanup
+
+Stage Summary:
+- Repo GitHub LIVE: https://github.com/triastantobimo-ux/Portofolio-Web (public, main) — source bersih 116 file + HANDOFF.md + README.md
+- Remote origin aman tanpa token; token di .zscripts/ght; handoff kini cukup: clone repo + beri PAT Vercel/Neon baru + HANDOFF.md
