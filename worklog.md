@@ -197,3 +197,22 @@ Work Log:
 Stage Summary:
 - LIVE: https://bimogt.vercel.app — light mode abu terang kalem (0.953) tanpa mengubah satu pun interaksi warna/animasi; kartu jurnal compact hemat ruang, desain & badge kategori tetap
 - Pelajaran: ubah globals.css tidak ter-pickup bila .next cache Turbopack stale → selalu rm -rf .next saat revisi tema tak muncul
+
+---
+Task ID: 11
+Agent: Super Z (main agent)
+Task: Update riwayat karir dari LinkedIn PDF (tanpa nama perusahaan)
+
+Work Log:
+- Sumber data: upload/Profile.pdf (export LinkedIn bimogushatriastanto, 4 halaman) — setelah percobaan curl/web-search LinkedIn terhalang authwall
+- src/lib/portfolio.ts: ganti array experience placeholder → 7 entri karir asli (2010–sekarang): Head of Internal Audit Department (Nov 2024–kini), Head of Internal Audit Division (Mei 2021–Nov 2024), Assistant Manager Internal Audit (Des 2018–Mei 2021, termasuk periode Acting Manager Nov 2020–Mei 2021), Internal Auditor (Mar–Nov 2018, otomotif), Accounting & Tax (Mar 2016–Mei 2017, pelabuhan), Integrated Distribution System Specialist (Feb 2013–Mar 2016, distribusi FMCG), Teknisi Komputer & Informal (Jan 2010–Nov 2012)
+- Field `company` di-rename `industry` (berisi industri+lokasi: Jaringan RS Swasta Nasional, RS Multinasional Asia Tenggara, Manufaktur Suku Cadang, Pelabuhan & Logistik, Distribusi FMCG, Retail & Jasa IT) — NAMA PERUSAHAAN TIDAK ADA sama sekali
+- experience.tsx: key & render menyesuaikan field industry; deskripsi heading section diperbarui ("Dari teknisi komputer, dunia distribusi & perpajakan, sampai memimpin tim audit")
+- stats: 5+ → 8+ Tahun di Dunia Audit (audit sejak Des 2018)
+- Lint bersih; verifikasi agent-browser: light desktop (heading, AM entry, Internal Auditor, Accounting & Tax), dark mode, mobile 390x844 — semua entri tampil benar tanpa nama perusahaan; catatan: halaman pakai scroll-behavior smooth → gunakan scrollTo behavior:'instant' saat verifikasi programatik
+- Commit 6f01a12 lokal OK
+- BLOKIR: .zscripts (ght/vt/dburl) hilang dari sandbox (ter-replace file cache scraping lama); PAT lama dari chat sudah invalid (auth failed); vercel whoami = Logged out; Neon URL di HANDOFF.md hanya format tanpa password → push GitHub & deploy Vercel menunggu kredensial baru dari pemilik
+
+Stage Summary:
+- Kode riwayat karir SELESAI & terverifikasi di lokal (commit 6f01a12), menunggu: (1) PAT GitHub baru → push, (2) Vercel token + Neon URL baru → deploy produksi
+- Pelajaran: file .zscripts TIDAK persisten antar sesi sandbox — simpan salinan kredensial di tempat aman milik pemilik (password manager), HANDOFF.md sengaja tak menyimpan nilai rahasia
