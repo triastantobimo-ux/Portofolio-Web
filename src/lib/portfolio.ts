@@ -21,7 +21,7 @@ export const profile = {
 };
 
 export const stats = [
-  { value: 5, suffix: "+", label: "Tahun di Dunia Audit" },
+  { value: 8, suffix: "+", label: "Tahun di Dunia Audit" },
   { value: 40, suffix: "+", label: "Proyek Audit Dikerjakan" },
   { value: 10, suffix: "+", label: "App & Tools Dibangun" },
   { value: 4, suffix: "", label: "Area Belajar Aktif" },
@@ -167,28 +167,60 @@ export const projects: Project[] = [
 
 export const experience = [
   {
-    role: "Corporate Internal Auditor",
-    company: "Perusahaan Multiindustri Nasional",
-    period: "2022 — Sekarang",
+    role: "Head of Internal Audit Department",
+    industry: "Industri Kesehatan · Jaringan RS Swasta Nasional — Indonesia",
+    period: "Nov 2024 — Sekarang",
     description:
-      "Menyusun rencana audit tahunan berbasis pemetaan risiko, mengeksekusi audit operasional dan kepatuhan lintas unit, serta memastikan tindak lanjut temuan berjalan efektif. Membangun tools internal untuk analisis data agar pekerjaan audit lebih cepat dan berbasis bukti.",
-    tech: ["Internal Audit", "Risk Assessment", "Data Analytics"],
+      "Memimpin departemen internal audit di level korporat grup rumah sakit: menyusun rencana audit berbasis pemetaan risiko, memimpin penugasan audit operasional & kepatuhan lintas unit, melaporkan temuan ke manajemen, dan memastikan setiap rekomendasi ditindaklanjuti secara efektif.",
+    tech: ["Corporate Audit", "Risk Assessment", "Internal Controls"],
   },
   {
-    role: "Staff Auditor",
-    company: "Kantor Akuntan Publik",
-    period: "2020 — 2022",
+    role: "Head of Internal Audit Division",
+    industry: "Industri Kesehatan · Jaringan RS Swasta Nasional — Indonesia",
+    period: "Mei 2021 — Nov 2024",
     description:
-      "Menjalankan pemeriksaan laporan keuangan klien dari berbagai industri: pengujian sampel, verifikasi bukti audit, dokumentasi working paper, dan komunikasi temuan kepada manajer audit. Fondasi disiplin bukti yang sekarang saya bawa ke mana-mana.",
-    tech: ["Financial Audit", "Sampling", "Working Paper"],
+      "Memimpin divisi internal audit dalam merencanakan dan mengeksekusi penugasan audit di seluruh unit — dari pengujian efektivitas pengendalian internal dan kepatuhan kebijakan, konsolidasi laporan audit untuk manajemen korporat, sampai pemantauan realisasi tindak lanjut temuan.",
+    tech: ["Audit Planning", "Team Leadership", "Audit Reporting"],
   },
   {
-    role: "IT Support & Freelance",
-    company: "Mandiri / Komunitas",
-    period: "2018 — 2020",
+    role: "Assistant Manager Internal Audit",
+    industry: "Industri Kesehatan · Jaringan RS Multinasional Asia Tenggara — Jakarta",
+    period: "Des 2018 — Mei 2021",
     description:
-      "Perjalanan hobi jadi keahlian: merakit PC, troubleshooting hardware-software, membangun website kecil, dan membantu UMKM sekitar. Dari sini saya sadar teknologi adalah pengganda produktivitas — termasuk untuk dunia audit.",
-    tech: ["Hardware", "Troubleshooting", "Web"],
+      "Membantu menyusun rencana & program audit tahunan, menjalankan audit atas efektivitas pengendalian internal, akurasi catatan keuangan, dan efisiensi operasional, lalu mengomunikasikan hasil, rekomendasi, dan laporan audit ke manajemen. Nov 2020 — Mei 2021 dipercaya sebagai Acting Manager tim Internal Audit Indonesia: memimpin koordinasi penugasan, konsolidasi laporan ke VP Corporate Risk & Internal Audit, dan membantu tim korporat di audit program & data analytics.",
+    tech: ["Internal Audit", "Working Paper", "Data Analytics"],
+  },
+  {
+    role: "Internal Auditor",
+    industry: "Industri Otomotif · Manufaktur Suku Cadang Ekspor — Jakarta",
+    period: "Mar 2018 — Nov 2018",
+    description:
+      "Menyusun dan melaksanakan program kerja audit sesuai kebutuhan manajemen pada manufaktur suku cadang otomotif berjaringan global: menguji kebenaran & kepatuhan pelaporan keuangan dan operasional terhadap standar, mengaudit output divisi akuntansi, melakukan inquiries & testing untuk menutup celah, serta menyusun laporan audit dan follow-up bersama manajemen.",
+    tech: ["Financial Audit", "Operational Audit", "Follow-up"],
+  },
+  {
+    role: "Accounting & Tax",
+    industry: "Industri Pelabuhan & Logistik · Terminal Serbaguna — Bekasi",
+    period: "Mar 2016 — Mei 2017",
+    description:
+      "Mengelola faktur, PPN, PPh Pasal 23 & Pasal 4(2), serta piutang (AR); menjalankan siklus akuntansi harian dari jurnal pembayaran sampai arsip dokumen; menyusun laporan aging piutang bulanan, laporan pendapatan & throughput operasional, laporan PNBP dwi-mingguan, dan rekonsiliasi PPN bulanan.",
+    tech: ["Pajak & VAT", "Account Receivable", "Rekonsiliasi"],
+  },
+  {
+    role: "Integrated Distribution System Specialist",
+    industry: "Industri Distribusi & Supply Chain · FMCG — Jakarta Timur",
+    period: "Feb 2013 — Mar 2016",
+    description:
+      "Menjaga sistem distribusi terpadu distributor resmi produk FMCG area Jabodetabek: menerima & memverifikasi sales order lalu menginputnya ke sistem ERP, berkoordinasi dengan gudang untuk ketersediaan stok, menerbitkan delivery order & faktur, serta menyusun laporan harian penjualan, pemakaian, dan distribusi inventori.",
+    tech: ["ERP", "Sales Order", "Inventory"],
+  },
+  {
+    role: "Teknisi Komputer & Pekerjaan Informal",
+    industry: "Beragam Industri · Retail & Jasa IT",
+    period: "Jan 2010 — Nov 2012",
+    description:
+      "Jam terbang teknologi paling awal: teknisi komputer di internet cafe, clerk sekaligus teknisi di toko video game, dan sales di toko komputer. Dari sinilah rasa penasaran saya pada hardware, software, dan cara teknologi memecahkan masalah nyata berakar — hingga akhirnya bertemu kembali dengan dunia audit.",
+    tech: ["Hardware", "Troubleshooting", "Customer Service"],
   },
 ];
 

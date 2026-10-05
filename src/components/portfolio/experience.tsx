@@ -18,13 +18,13 @@ export function Experience() {
         <SectionHeading
           eyebrow="Perjalanan"
           title="Pengalaman kerja"
-          description="Dari bangku pelajar IT, ruang audit, sampai membangun tools sendiri — setiap langkah mengajarkan sesuatu yang baru."
+          description="Dari teknisi komputer, dunia distribusi & perpajakan, sampai memimpin tim audit — setiap langkah mengajarkan sesuatu yang baru."
         />
 
         <ol className="relative space-y-8 before:absolute before:top-2 before:bottom-2 before:left-[19px] before:w-px before:bg-gradient-to-b before:from-primary/60 before:via-border before:to-transparent sm:before:left-[23px]">
           {experience.map((e, i) => (
             <motion.li
-              key={`${e.company}-${e.role}`}
+              key={`${e.period}-${e.role}`}
               initial={{ opacity: 0, x: -24 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-60px" }}
@@ -47,7 +47,7 @@ export function Experience() {
                     {e.period}
                   </span>
                 </div>
-                <p className="mt-0.5 text-sm font-medium text-muted-foreground">{e.company}</p>
+                <p className="mt-0.5 text-sm font-medium text-muted-foreground">{e.industry}</p>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground text-pretty">
                   {e.description}
                 </p>
