@@ -19,19 +19,43 @@ const links = [
 
 function ThemeToggle() {
   const { setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  // Ikon ditampilkan lewat CSS dark variant — aman dari hydration mismatch.
-  // resolvedTheme hanya dibaca di dalam event handler, bukan saat render.
+  useEffect(() => setMounted(true), []);
+
+  const isDark = mounted && resolvedTheme === "dark";
+
   return (
     <Button
       variant="ghost"
       size="icon"
-      aria-label="Ganti tema terang/gelap"
-      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-      className="rounded-full"
+      aria-label={isDark ? "Ganti ke tema terang" : "Ganti ke tema gelap"}
+      title={isDark ? "Tema gelap · klik untuk terang" : "Tema terang · klik untuk gelap"}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      className="relative rounded-full border border-transparent hover:border-primary/30 hover:bg-primary/10"
+      disabled={!mounted}
     >
-      <Sun className="hidden size-5 dark:block" aria-hidden />
-      <Moon className="size-5 dark:hidden" aria-hidden />
+      <Sun
+        className={`size-5 transition-all ${
+          mounted
+            ? isDark
+              ? "scale-100 rotate-0 opacity-100"
+              : "absolute scale-0 rotate-90 opacity-0"
+            : "opacity-0"
+        }`}
+        aria-hidden
+      />
+      <Moon
+        className={`size-5 transition-all ${
+          mounted
+            ? !isDark
+              ? "scale-100 rotate-0 opacity-100"
+              : "absolute scale-0 -rotate-90 opacity-0"
+            : "opacity-0"
+        }`}
+        aria-hidden
+      />
+      {!mounted && <span className="size-5" aria-hidden />}
     </Button>
   );
 }
@@ -50,7 +74,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Scroll-spy: tandai section yang sedang terlihat
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -73,14 +96,12 @@ export function Navbar() {
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     } else {
-      // Dari halaman lain (mis. /blog), kembali ke beranda di section tujuan
       window.location.assign(`/#${id}`);
     }
   }
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      {/* Progress bar baca */}
       <motion.div
         style={{ scaleX: progress }}
         className="h-0.5 origin-left bg-gradient-to-r from-primary via-chart-2 to-primary"
@@ -108,7 +129,6 @@ export function Navbar() {
           </span>
         </button>
 
-        {/* Link desktop */}
         <ul className="hidden items-center gap-1 md:flex">
           {links.map((l) => (
             <li key={l.id}>
@@ -135,7 +155,6 @@ export function Navbar() {
 
         <div className="flex items-center gap-1.5">
           <ThemeToggle />
-          {/* Tombol menu mobile */}
           <Button
             variant="ghost"
             size="icon"
@@ -149,7 +168,6 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Menu mobile */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -174,6 +192,12 @@ export function Navbar() {
                   </button>
                 </li>
               ))}
+              <li className="mt-1 border-t pt-2">
+                <div className="flex items-center justify-between px-4 py-2">
+                  <span className="text-sm text-muted-foreground">Tema</span>
+                  <ThemeToggle />
+                </div>
+              </li>
             </ul>
           </motion.div>
         )}

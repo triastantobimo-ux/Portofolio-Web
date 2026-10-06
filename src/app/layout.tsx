@@ -15,9 +15,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://bimogt.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bimogt.vercel.app"),
-  title: `${profile.name} — Portofolio Pribadi`,
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: `${profile.name} — Portofolio Pribadi`,
+    template: `%s — ${profile.name}`,
+  },
   description:
     "Website pribadi Bimo GT — Corporate Internal Auditor & IT enthusiast. Galeri app & tools yang saya bangun, jurnal tulisan seputar audit, IT, AI, dan kebiasaan belajar hal baru.",
   keywords: [
@@ -28,14 +33,46 @@ export const metadata: Metadata = {
     "teknologi",
     "jurnal",
     profile.name,
+    "Bimo GT",
   ],
-  authors: [{ name: profile.name }],
+  authors: [{ name: profile.name, url: siteUrl }],
+  creator: profile.name,
+  alternates: {
+    canonical: siteUrl,
+  },
   openGraph: {
     title: `${profile.name} — Portofolio Pribadi`,
     description:
       "Portofolio interaktif: proyek, keahlian, pengalaman, dan buku tamu. Dibangun dengan Next.js 16, Tailwind CSS 4, dan Prisma.",
     type: "website",
     locale: "id_ID",
+    url: siteUrl,
+    siteName: `${profile.name} — Portofolio`,
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: `${profile.name} — Corporate Internal Auditor & IT Enthusiast`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${profile.name} — Portofolio Pribadi`,
+    description:
+      "Portofolio interaktif: proyek, keahlian, pengalaman, dan jurnal audit–teknologi–game.",
+    images: ["/og.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -43,6 +80,36 @@ export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f4faf5" },
     { media: "(prefers-color-scheme: dark)", color: "#101715" },
+  ],
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: `${profile.name} — Portofolio Pribadi`,
+      description:
+        "Website pribadi Bimo GT — Corporate Internal Auditor & IT enthusiast.",
+      inLanguage: "id-ID",
+      publisher: { "@id": `${siteUrl}/#person` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      name: profile.name,
+      url: siteUrl,
+      email: profile.email,
+      jobTitle: "Corporate Internal Auditor",
+      description: profile.bio,
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: "ID",
+      },
+      sameAs: ["https://github.com/triastantobimo-ux"],
+    },
   ],
 };
 
@@ -56,6 +123,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased bg-background text-foreground`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

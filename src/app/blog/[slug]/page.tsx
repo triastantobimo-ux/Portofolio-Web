@@ -10,6 +10,8 @@ import { getArticle, getArticleSlugs } from "@/lib/articles";
 
 type Props = { params: Promise<{ slug: string }> };
 
+const BASE = "https://bimogt.vercel.app";
+
 export function generateStaticParams() {
   return getArticleSlugs().map((slug) => ({ slug }));
 }
@@ -17,10 +19,35 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const article = getArticle(slug);
-  if (!article) return { title: "Artikel tidak ditemukan — Bimo GT" };
+  if (!article) return { title: "Artikel tidak ditemukan" };
+
+  const url = `${BASE}/blog/${slug}`;
   return {
-    title: `${article.title} — Bimo GT`,
+    title: article.title,
     description: article.excerpt,
+    alternates: { canonical: url },
+    openGraph: {
+      title: article.title,
+      description: article.excerpt,
+      type: "article",
+      url,
+      locale: "id_ID",
+      publishedTime: article.date,
+      images: [
+        {
+          url: "/og.png",
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.excerpt,
+      images: ["/og.png"],
+    },
   };
 }
 
@@ -49,7 +76,6 @@ export default async function ArticlePage({ params }: Props) {
             Semua tulisan
           </Link>
 
-          {/* Kepala artikel */}
           <header className="mb-10">
             <span
               className="animate-float-y mb-6 grid size-16 place-items-center rounded-2xl bg-gradient-to-br from-primary/25 to-chart-2/25 text-3xl ring-2 ring-primary/30"
@@ -93,13 +119,11 @@ export default async function ArticlePage({ params }: Props) {
             </div>
           </header>
 
-          {/* Isi artikel */}
           <div
             className="article-body"
             dangerouslySetInnerHTML={{ __html: article.html }}
           />
 
-          {/* Penutup + navigasi */}
           <div className="mt-16 rounded-3xl border border-primary/25 bg-primary/5 p-6 sm:p-8">
             <p className="text-sm leading-relaxed text-muted-foreground">
               Terima kasih sudah membaca sampai sini. Kalau kamu punya pengalaman

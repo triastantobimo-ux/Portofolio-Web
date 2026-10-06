@@ -7,9 +7,20 @@ import { Journal } from "@/components/portfolio/journal";
 import { getArticleMetas } from "@/lib/articles";
 
 export const metadata: Metadata = {
-  title: "Jurnal & Tulisan — Bimo GT",
+  title: "Jurnal & Tulisan",
   description:
     "Kumpulan jurnal dan tulisan Bimo GT, terbagi per segmen: audit, teknologi, game, dan catatan kehidupan. Ditulis santai dengan harapan berguna untuk dibaca ulang.",
+  alternates: {
+    canonical: "https://bimogt.vercel.app/blog",
+  },
+  openGraph: {
+    title: "Jurnal & Tulisan — Bimo GT",
+    description:
+      "Kumpulan jurnal audit, teknologi, game, dan catatan belajar.",
+    url: "https://bimogt.vercel.app/blog",
+    type: "website",
+    locale: "id_ID",
+  },
 };
 
 export default function BlogPage() {
@@ -20,7 +31,6 @@ export default function BlogPage() {
       <Navbar />
 
       <main className="flex-1 pt-28 pb-20 md:pt-36">
-        {/* Aurora latar tipis */}
         <div
           aria-hidden
           className="animate-aurora-a absolute top-24 left-[-8%] size-[380px] rounded-full blur-3xl"
@@ -41,7 +51,6 @@ export default function BlogPage() {
             Kembali ke beranda
           </Link>
 
-          {/* Section jurnal lengkap: kategori segmen + semua artikel */}
           <Journal articles={articles} showAllLink={false} />
         </div>
       </main>

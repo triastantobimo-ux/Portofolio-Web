@@ -3,7 +3,15 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ArrowUpRight, CalendarDays, Clock, PenLine } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  CalendarDays,
+  Clock,
+  PenLine,
+  Search,
+  X,
+} from "lucide-react";
 import { SectionHeading } from "./section-heading";
 import { formatArticleDate } from "@/lib/format-date";
 import { ARTICLE_CATEGORIES, type ArticleCategoryId } from "@/lib/categories";
@@ -19,6 +27,7 @@ export function Journal({
   showAllLink?: boolean;
 }) {
   const [active, setActive] = useState<Filter>("semua");
+  const [query, setQuery] = useState("");
 
   /* Jumlah tulisan per kategori untuk ditampilkan di kartu */
   const counts = useMemo(() => {
@@ -29,10 +38,23 @@ export function Journal({
     return map;
   }, [articles]);
 
-  const filtered = useMemo(
-    () => (active === "semua" ? articles : articles.filter((a) => a.category === active)),
-    [active, articles]
-  );
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    let list =
+      active === "semua"
+        ? articles
+        : articles.filter((a) => a.category === active);
+
+    if (q) {
+      list = list.filter((a) => {
+        const hay = [a.title, a.excerpt, a.tags.join(" "), a.category]
+          .join(" ")
+          .toLowerCase();
+        return hay.includes(q);
+      });
+    }
+    return list;
+  }, [active, articles, query]);
 
   const isAll = active === "semua";
 
@@ -51,13 +73,42 @@ export function Journal({
           description="Saya menulis untuk berpikir lebih jernih — dibagi per segmen supaya kamu langsung menemukan yang dicari."
         />
 
+        {/* ── Pencarian ── */}
+        <div className="relative mb-5">
+          <label htmlFor="journal-search" className="sr-only">
+            Cari tulisan
+          </label>
+          <Search
+            className="pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-muted-foreground"
+            aria-hidden
+          />
+          <input
+            id="journal-search"
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Cari judul, tag, atau kata kunci…"
+            className="w-full rounded-2xl border bg-card/60 py-3 pr-10 pl-10 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/20"
+            autoComplete="off"
+          />
+          {query && (
+            <button
+              type="button"
+              onClick={() => setQuery("")}
+              aria-label="Hapus pencarian"
+              className="absolute top-1/2 right-3 grid size-7 -translate-y-1/2 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            >
+              <X className="size-3.5" aria-hidden />
+            </button>
+          )}
+        </div>
+
         {/* ── SEGMEN: pilih kategori dulu ── */}
         <div
           role="tablist"
           aria-label="Kategori jurnal"
           className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5"
         >
-          {/* Kartu "Semua" */}
           <button
             role="tab"
             aria-selected={isAll}
@@ -92,7 +143,6 @@ export function Journal({
             </p>
           </button>
 
-          {/* Kartu per kategori */}
           {ARTICLE_CATEGORIES.map((c) => {
             const selected = active === c.id;
             return (
@@ -132,7 +182,14 @@ export function Journal({
           })}
         </div>
 
-        {/* ── ISI: artikel sesuai segmen terpilih ── */}
+        {query.trim() && (
+          <p className="mt-4 text-sm text-muted-foreground" aria-live="polite">
+            {filtered.length === 0
+              ? `Tidak ada tulisan untuk “${query.trim()}”.`
+              : `${filtered.length} tulisan cocok dengan “${query.trim()}”.`}
+          </p>
+        )}
+
         <motion.div layout className="mt-6 grid grid-cols-1 gap-3.5 md:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {filtered.map((a, i) => {
@@ -209,8 +266,8 @@ export function Journal({
           </AnimatePresence>
         </motion.div>
 
-        {filtered.length === 0 && (
-          <p className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+        {filtered.length === 0 && !query.trim() && (
+          <p className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground">
             <PenLine className="size-4 text-primary" aria-hidden />
             Jurnal untuk segmen ini sedang ditulis — segera hadir.
           </p>
