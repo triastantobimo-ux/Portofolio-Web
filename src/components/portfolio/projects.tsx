@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Folder } from "lucide-react";
+import { ExternalLink, Folder, LockKeyhole } from "lucide-react";
 import { SectionHeading } from "./section-heading";
 import { TiltCard } from "./tilt-card";
 import { projects } from "@/lib/portfolio";
@@ -26,7 +26,6 @@ export function Projects() {
           description="Koleksi app, tools, dan eksperimen — dari otomatisasi pekerjaan audit sampai lab teknologi di rumah. Sebagian untuk kerja, sebagian untuk seru-seru, semuanya belajar."
         />
 
-        {/* Filter kategori */}
         <div className="mb-10 flex flex-wrap justify-center gap-2" role="group" aria-label="Filter proyek">
           {filters.map((f) => (
             <button
@@ -51,69 +50,83 @@ export function Projects() {
           ))}
         </div>
 
-        {/* Grid proyek */}
         <motion.div layout className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
-            {filtered.map((p, i) => (
-              <motion.div
-                key={p.title}
-                layout
-                initial={{ opacity: 0, scale: 0.94, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.94, y: -14 }}
-                transition={{ duration: 0.4, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <TiltCard className="h-full rounded-3xl">
-                  <article className="glass flex h-full flex-col overflow-hidden rounded-3xl">
-                    {/* Cover gradient + emoji */}
-                    <div
-                      className={`relative flex h-36 items-center justify-center overflow-hidden bg-gradient-to-br ${p.gradient}`}
-                    >
-                      <span
-                        className="text-6xl drop-shadow-lg transition-transform duration-500 group-hover/tilt:scale-125 group-hover/tilt:-rotate-6"
-                        role="img"
-                        aria-label={`Ikon proyek ${p.title}`}
-                      >
-                        {p.emoji}
-                      </span>
-                      <span className="absolute top-3 left-3 rounded-full bg-background/70 px-3 py-1 font-mono text-[10px] tracking-wider text-foreground/80 uppercase backdrop-blur-sm">
-                        {p.category}
-                      </span>
-                    </div>
+            {filtered.map((p, i) => {
+              const hasPublicLink = Boolean(p.link && p.link !== "#");
 
-                    <div className="flex flex-1 flex-col gap-3 p-5">
-                      <h3 className="text-lg font-bold tracking-tight">{p.title}</h3>
-                      <p className="text-sm leading-relaxed text-muted-foreground text-pretty">
-                        {p.description}
-                      </p>
-                      <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-2">
-                        <div className="flex flex-wrap gap-1.5">
-                          {p.tags.map((t) => (
-                            <span
-                              key={t}
-                              className="rounded-md bg-secondary px-2 py-1 font-mono text-[10px] text-secondary-foreground"
-                            >
-                              {t}
-                            </span>
-                          ))}
-                        </div>
-                        <a
-                          href={p.link}
-                          aria-label={`Buka detail proyek ${p.title}`}
-                          className="grid size-9 shrink-0 place-items-center rounded-full border text-muted-foreground transition-all hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
+              return (
+                <motion.div
+                  key={p.title}
+                  layout
+                  initial={{ opacity: 0, scale: 0.94, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.94, y: -14 }}
+                  transition={{ duration: 0.4, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <TiltCard className="h-full rounded-3xl">
+                    <article className="glass flex h-full flex-col overflow-hidden rounded-3xl">
+                      <div
+                        className={`relative flex h-36 items-center justify-center overflow-hidden bg-gradient-to-br ${p.gradient}`}
+                      >
+                        <span
+                          className="text-6xl drop-shadow-lg transition-transform duration-500 group-hover/tilt:scale-125 group-hover/tilt:-rotate-6"
+                          role="img"
+                          aria-label={`Ikon proyek ${p.title}`}
                         >
-                          <ExternalLink className="size-4" aria-hidden />
-                        </a>
+                          {p.emoji}
+                        </span>
+                        <span className="absolute top-3 left-3 rounded-full bg-background/70 px-3 py-1 font-mono text-[10px] tracking-wider text-foreground/80 uppercase backdrop-blur-sm">
+                          {p.category}
+                        </span>
                       </div>
-                    </div>
-                  </article>
-                </TiltCard>
-              </motion.div>
-            ))}
+
+                      <div className="flex flex-1 flex-col gap-3 p-5">
+                        <h3 className="text-lg font-bold tracking-tight">{p.title}</h3>
+                        <p className="text-sm leading-relaxed text-muted-foreground text-pretty">
+                          {p.description}
+                        </p>
+                        <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-2">
+                          <div className="flex flex-wrap gap-1.5">
+                            {p.tags.map((t) => (
+                              <span
+                                key={t}
+                                className="rounded-md bg-secondary px-2 py-1 font-mono text-[10px] text-secondary-foreground"
+                              >
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+
+                          {hasPublicLink ? (
+                            <a
+                              href={p.link}
+                              target={p.link.startsWith("http") ? "_blank" : undefined}
+                              rel={p.link.startsWith("http") ? "noreferrer" : undefined}
+                              aria-label={`Buka detail proyek ${p.title}`}
+                              className="grid size-9 shrink-0 place-items-center rounded-full border text-muted-foreground transition-all hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
+                            >
+                              <ExternalLink className="size-4" aria-hidden />
+                            </a>
+                          ) : (
+                            <span
+                              className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-[10px] font-medium text-muted-foreground"
+                              title="Project belum memiliki tautan publik"
+                            >
+                              <LockKeyhole className="size-3" aria-hidden />
+                              Belum publik
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </article>
+                  </TiltCard>
+                </motion.div>
+              );
+            })}
           </AnimatePresence>
         </motion.div>
 
-        {/* CTA proyek lainnya */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -1,7 +1,8 @@
 // ============================================================
 // SCHEMA PRODUCTION (Vercel + Neon Postgres)
-// Dipakai saat deploy: `prisma generate` & `prisma db push`
-// dengan flag --schema=prisma/schema.postgres.prisma
+// Vercel build hanya menjalankan `prisma generate` dengan schema ini.
+// Perubahan schema produksi harus diterapkan secara eksplisit setelah review
+// menggunakan `bun run db:push:prod`; destructive change tidak di-auto-accept.
 //
 // Schema lokal (SQLite) tetap di prisma/schema.prisma
 // sehingga preview sandbox tetap berjalan normal.
