@@ -253,3 +253,25 @@ Stage Summary:
 - LIVE di https://bimogt.vercel.app: karir 3 ringkasan (tanpa nama perusahaan), SEO lengkap (sitemap/og/JSON-LD), search jurnal, toggle tema animasi, guestbook hardened + rate limit, badge "Belum publik" proyek
 - Workflow baru: push GitHub main → Vercel build & deploy otomatis; vercel-build hanya generate+next build (schema prod via db:push:prod manual bila berubah)
 - Kredensial kini hidup di CLI auth sandbox (vercel whoami) — bila sandbox reset lagi: cukup ulangi device flow login
+
+---
+Task ID: 14
+Agent: Super Z (main agent)
+Task: Restrukturisasi ringkasan karir — kluster per nature pekerjaan (permintaan pemilik)
+
+Work Log:
+- Feedback pemilik: ringkasan karir harus dikluster berdasarkan sifat/nature pekerjaan (internal audit / accounting-tax-administration / non-formal terkait hobi), tiap aspek berisi bullet historikal + penjelasan singkat apa & ngapain
+- Sumber data: upload/Profile.pdf (LinkedIn export) — tanpa nama perusahaan seperti sebelumnya
+- portfolio.ts: ganti `experience` (3 kartu ringkas) -> `experienceClusters` (ExperienceCluster[]): aspect+emoji+span+summary+entries[{role,period,industry,detail}]+tags
+  * Aspek 1 Internal Audit (2018-Sekarang): 4 entri — Head of Department (Nov 2024-), Head of Division (Mei 2021-Nov 2024), AM Internal Audit + Acting Manager (Des 2018-Mei 2021), Internal Auditor otomotif (Mar-Nov 2018)
+  * Aspek 2 Accounting, Tax & Administration (2013-2017): Accounting & Tax terminal pelabuhan (Mar 2016-Mei 2017), Integrated Distribution System Specialist FMCG (Feb 2013-Mar 2016)
+  * Aspek 3 Non-formal — Hobi & Teknologi (2010-2012): Teknisi Internet Cafe, Store Clerk & Teknisi toko game, Sales toko komputer
+- experience.tsx: render kluster — ikon emoji di titik timeline, badge span, summary aspek, bullet list historikal (dot marker, role + periode mono kanan, industri kecil, detail 1-2 kalimat), tags per aspek
+- Troubleshooting sandbox: dev server lama (dari supervisor sandbox) rusak setelah rm -rf .next (Turbopack cache SST hilang, EADDRINUSE + Internal Error 500) -> kill PID lama (1082/1261), restart fresh, HTTP 200
+- Verifikasi: lint bersih, build produksi 22 halaman sukses, grep nama perusahaan = 0 di kedua file
+- Push 0427076 -> Vercel auto-deploy (git connect Task 13) Ready dalam 37 detik
+- Smoke test produksi bimogt.vercel.app: 3 kluster tampil, entri historikal lengkap, 0 nama perusahaan; screenshot desktop (3 kluster + tags) & mobile 390px rapi
+
+Stage Summary:
+- LIVE: https://bimogt.vercel.app/#pengalaman — karir kini dikluster 3 aspek nature kerja dengan bullet historikal + penjelasan singkat per peran, tanpa nama perusahaan
+- Pelajaran: dev server sandbox lama harus di-kill sebelum rm -rf .next (Turbopack persistent cache pecah bila dihapus di belakang punggung proses hidup)
