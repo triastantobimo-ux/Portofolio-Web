@@ -166,33 +166,123 @@ export const projects: Project[] = [
 ];
 
 /* ============================================================
-   PENGALAMAN — 3 ringkasan dari 7 peran detail
-   (Leadership audit · Jalur auditor · Fondasi karier)
+   PENGALAMAN — dikluster berdasarkan sifat/nature pekerjaan:
+   1. Internal Audit
+   2. Accounting, Tax & Administration
+   3. Non-formal (berkaitan dengan hobi)
+   Tiap aspek berisi bullet historikal + penjelasan singkat
+   apa pekerjaannya & apa yang dikerjakan.
    ============================================================ */
-export const experience = [
+export type ExperienceEntry = {
+  role: string;
+  period: string;
+  industry: string; // industri + lokasi — TANPA nama perusahaan
+  detail: string; // penjelasan singkat: apa & ngapain
+};
+
+export type ExperienceCluster = {
+  aspect: string; // nature pekerjaan
+  emoji: string;
+  span: string; // rentang waktu keseluruhan aspek
+  summary: string; // pengantar singkat nature kerjaannya
+  entries: ExperienceEntry[];
+  tags: string[];
+};
+
+export const experienceClusters: ExperienceCluster[] = [
   {
-    role: "Head of Internal Audit",
-    industry: "Industri Kesehatan · Jaringan RS Swasta Nasional — Indonesia",
-    period: "Mei 2021 — Sekarang",
-    description:
-      "Memimpin fungsi internal audit di level divisi lalu departemen korporat grup rumah sakit: merancang rencana audit berbasis risiko, memimpin penugasan operasional & kepatuhan lintas unit, mengonsolidasi laporan ke manajemen, dan memastikan rekomendasi ditindaklanjuti. Fokus pada efektivitas pengendalian internal, GRC, dan penguatan kapasitas tim audit.",
-    tech: ["Corporate Audit", "Risk Assessment", "Team Leadership", "Internal Controls"],
+    aspect: "Internal Audit",
+    emoji: "🔍",
+    span: "2018 — Sekarang",
+    summary:
+      "Alur utama karier: dari auditor lapangan yang menyusun working paper sampai memimpin fungsi internal audit di tingkat departemen korporat.",
+    entries: [
+      {
+        role: "Head of Internal Audit Department",
+        period: "Nov 2024 — Sekarang",
+        industry: "Kesehatan · Jaringan RS Swasta Nasional — Indonesia",
+        detail:
+          "Memimpin departemen internal audit korporat grup: menetapkan rencana audit berbasis risiko, mengawasi penugasan lintas unit usaha, dan menyampaikan hasil audit ke manajemen puncak.",
+      },
+      {
+        role: "Head of Internal Audit Division",
+        period: "Mei 2021 — Nov 2024",
+        industry: "Kesehatan · Jaringan RS Swasta Nasional — Indonesia",
+        detail:
+          "Merancang program audit tahunan, memimpin penugasan operasional & kepatuhan lintas rumah sakit, mengonsolidasi laporan, dan memastikan rekomendasi benar-benar ditindaklanjuti.",
+      },
+      {
+        role: "Assistant Manager Internal Audit",
+        period: "Des 2018 — Mei 2021",
+        industry:
+          "Kesehatan · RS Multinasional Asia Tenggara — Jakarta · Acting Manager Nov 2020 — Mei 2021",
+        detail:
+          "Membantu penyusunan annual audit plan serta pengujian efektivitas pengendalian internal dan efisiensi operasional. Saat dipercaya sebagai Acting Manager, memimpin tim audit Indonesia dan melapor ke VP Corporate Risk & Internal Audit.",
+      },
+      {
+        role: "Internal Auditor",
+        period: "Mar 2018 — Nov 2018",
+        industry: "Otomotif · Manufaktur Suku Cadang Ekspor — Jakarta",
+        detail:
+          "Menjalankan audit keuangan & operasional: menyusun working paper, mengaudit output divisi akuntansi, lalu menulis laporan dan menindaklanjuti temuan bersama manajemen.",
+      },
+    ],
+    tags: ["Corporate Audit", "Risk Assessment", "Internal Controls", "Data Analytics"],
   },
   {
-    role: "Internal Auditor & Assistant Manager",
-    industry: "Kesehatan (RS Multinasional Asia Tenggara) · Otomotif (Manufaktur Ekspor) — Jakarta",
-    period: "Mar 2018 — Mei 2021",
-    description:
-      "Membangun fondasi audit profesional: dari Internal Auditor di manufaktur suku cadang otomotif global (financial & operational audit, working paper, follow-up) hingga Assistant Manager di jaringan RS multinasional — menyusun program audit tahunan, menguji pengendalian & efisiensi operasional, serta Acting Manager (Nov 2020–Mei 2021) yang mengoordinasikan penugasan dan laporan ke VP Corporate Risk & Internal Audit, termasuk dukungan data analytics.",
-    tech: ["Internal Audit", "Working Paper", "Data Analytics", "Financial & Operational Audit"],
+    aspect: "Accounting, Tax & Administration",
+    emoji: "🧾",
+    span: "2013 — 2017",
+    summary:
+      "Fondasi angka-angka: memahami transaksi dari sisi pencatatannya — invoice, pajak, ERP — sebelum akhirnya mengauditnya dari sisi lain meja.",
+    entries: [
+      {
+        role: "Accounting & Tax",
+        period: "Mar 2016 — Mei 2017",
+        industry: "Pelabuhan & Logistik · Terminal Multiguna — Bekasi",
+        detail:
+          "Mengelola invoice, PPN, PPh Art. 23 & 4(2), dan piutang: input-post jurnal pembayaran, rekonsiliasi PPN bulanan, serta penyusunan laporan aging piutang dan pendapatan operasional.",
+      },
+      {
+        role: "Integrated Distribution System Specialist",
+        period: "Feb 2013 — Mar 2016",
+        industry: "Distribusi FMCG — Jakarta",
+        detail:
+          "Mengoperasikan ERP distributor FMCG: memproses sales order, berkoordinasi dengan gudang untuk ketersediaan stok, menerbitkan delivery order & invoice, dan menyusun laporan harian penjualan serta inventori.",
+      },
+    ],
+    tags: ["Pajak & VAT", "AR & Jurnal", "ERP", "Inventory"],
   },
   {
-    role: "Accounting, Distribusi & Fondasi IT",
-    industry: "Pelabuhan & Logistik · FMCG Distribusi · Retail & Jasa IT",
-    period: "Jan 2010 — Mei 2017",
-    description:
-      "Tiga fondasi sebelum masuk audit: Accounting & Tax di terminal pelabuhan (PPN, PPh, AR, rekonsiliasi); Integrated Distribution System Specialist di distributor FMCG (ERP, sales order, inventori); dan teknisi komputer / toko game / sales IT (2010–2012) yang menanamkan rasa penasaran pada hardware dan troubleshooting — akar yang kini kembali bertemu dengan dunia audit dan teknologi.",
-    tech: ["Pajak & VAT", "ERP", "Inventory", "Hardware & Troubleshooting"],
+    aspect: "Non-formal — Hobi & Teknologi",
+    emoji: "🎮",
+    span: "2010 — 2012",
+    summary:
+      "Sebelum karier formal, hobi komputer & video game menjadi penghasilan — di sinilah akar rasa penasaran teknologi yang kini bertemu kembali dengan dunia audit.",
+    entries: [
+      {
+        role: "Teknisi Komputer — Internet Café",
+        period: "2010 — 2012",
+        industry: "Retail & Jasa IT",
+        detail:
+          "Perawatan dan troubleshooting PC harian — hardware, jaringan, dan software diperbaiki dengan tangan sendiri.",
+      },
+      {
+        role: "Store Clerk & Teknisi — Toko Video Game",
+        period: "2010 — 2012",
+        industry: "Retail & Jasa IT",
+        detail:
+          "Melayani penjualan sekaligus merawat konsol dan media game — tempat hobi gaming pertama kali membayar dirinya sendiri.",
+      },
+      {
+        role: "Sales — Toko Komputer",
+        period: "2010 — 2012",
+        industry: "Retail & Jasa IT",
+        detail:
+          "Menjual PC dan aksesori sambil membedah spesifikasi untuk pelanggan awam — melatih kemampuan menjelaskan teknologi dengan bahasa sederhana.",
+      },
+    ],
+    tags: ["Hardware", "Troubleshooting", "Retail IT"],
   },
 ];
 
