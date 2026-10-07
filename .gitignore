@@ -38,3 +38,4 @@ Thumbs.db
 .vercel
 upload/
 .screenshots/
+tsconfig.tsbuildinfo

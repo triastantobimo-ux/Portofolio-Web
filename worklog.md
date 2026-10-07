@@ -234,3 +234,22 @@ Work Log:
 Stage Summary:
 - Kesimpulan review: commit GPT LAYAK & berkualitas — karir tetap tanpa nama perusahaan, security hardening solid, SEO profesional; 1 error lint ditemukan & sudah diperbaiki+push (7b22b3b)
 - Menunggu kredensial Vercel (token + Neon URL) untuk menggabungkan semua perubahan ini ke produksi
+
+---
+Task ID: 13
+Agent: Super Z (main agent)
+Task: Ambil kredensial mandiri (device login) + deploy produksi + hubungkan auto-deploy
+
+Work Log:
+- User minta kredensial diambil sendiri → jalankan `vercel login` device flow di background, user konfirmasi via link https://vercel.com/oauth/device?user_code=ZLNW-WPWQ → whoami = triastantobimo-7165
+- PAT GitHub baru dari user disimpan & diverifikasi (200 repo API)
+- vercel link --yes --project portfolio; vercel env pull --environment production → TEMUAN: DATABASE_URL produksi = Sensitive env var (tak terbaca, tapi sudah terpasang & bekerja); ada var bimogt_DATABASE_URL dengan channel_binding=require → JANGAN dipakai (merusak Prisma+pgbouncer, pelajaran lama); .zscripts/dburl dihapus agar tak salah pakai
+- Deploy manual `vercel --prod` (TANPA deploy script agar env produksi tidak tertimpa var channel_binding) → sukses
+- Smoke test produksi: homepage 200, karir baru live (Jaringan RS Swasta Nasional=1, placeholder=0), visits API {"views":25}, guestbook API entri asli, sitemap.xml 200, og.png 200
+- vercel git connect --yes → repo GitHub terhubung: SETIAP push ke main = auto-deploy produksi (ke depan tak perlu kredensial manual lagi)
+- git status bersih (.env.local hasil link ter-gitignore)
+
+Stage Summary:
+- LIVE di https://bimogt.vercel.app: karir 3 ringkasan (tanpa nama perusahaan), SEO lengkap (sitemap/og/JSON-LD), search jurnal, toggle tema animasi, guestbook hardened + rate limit, badge "Belum publik" proyek
+- Workflow baru: push GitHub main → Vercel build & deploy otomatis; vercel-build hanya generate+next build (schema prod via db:push:prod manual bila berubah)
+- Kredensial kini hidup di CLI auth sandbox (vercel whoami) — bila sandbox reset lagi: cukup ulangi device flow login
