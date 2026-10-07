@@ -216,3 +216,21 @@ Work Log:
 Stage Summary:
 - Kode riwayat karir SELESAI & terverifikasi di lokal (commit 6f01a12), menunggu: (1) PAT GitHub baru → push, (2) Vercel token + Neon URL baru → deploy produksi
 - Pelajaran: file .zscripts TIDAK persisten antar sesi sandbox — simpan salinan kredensial di tempat aman milik pemilik (password manager), HANDOFF.md sengaja tak menyimpan nilai rahasia
+
+---
+Task ID: 12
+Agent: Super Z (main agent)
+Task: Review push commit GPT milik pemilik di repo GitHub
+
+Work Log:
+- Sinkronisasi: sandbox me-restore state lokal lama antar sesi (.zscripts ikut hilang lagi) → reset --hard ke FETCH_HEAD; remote = sumber kebenaran
+- Commit GPT yang masuk di remote: c2e991e (experience 3 ringkasan, SEO, search jurnal, toggle tema) & 1c2f61d (harden deploy + guestbook); keduanya di ATAS commit karir saya (2096bca) → tidak konflik
+- Review c2e991e: 7 entri karir diringkas jadi 3 (Leadership audit · Jalur auditor · Fondasi karier) — tetap TANPA nama perusahaan, industri/tahun/jobdesc akurat; SEO lengkap (title template, canonical, OG+twitter card, og.png, JSON-LD Person/WebSite, sitemap.ts dinamis, robots.txt sitemap); search jurnal memoized + aria-live; toggle tema mounted-pattern dengan animasi ikon
+- Review 1c2f61d: rate-limit.ts (fixed-window + cleanup/100-op + globalThis store), guestbook POST 3/15 menit + payload 2KB + duplikat 10 menit → 409, like 30/jam + 1/entri/jam, verifikasi panjang role; vercel-build TIDAK lagi db push --accept-data-loss (schema prod via db:push:prod manual) — lebih aman; projects.tsx: link "#" → badge "Belum publik" (LockKeyhole); tests/rate-limit.test.ts 3/3 pass
+- Temuan & tindakan: (1) dugaan syntax error navbar = false alarm (artefak terminal ANSI memakan "[m", byte asli benar); (2) error lint nyata react-hooks/set-state-in-effect di useEffect(() => setMounted(true)) → diperbaiki via requestAnimationFrame deferral (7b22b3b), animasi & perilaku GPT tetap; (3) catatan minor: rate-limit in-memory per-instance di serverless (approx), x-forwarded-for kiri bisa spoof → cukup untuk skala situs ini
+- Verifikasi dev: lint bersih, bun test 3/3, browser: pengalaman 3 kartu OK, toggle dark↔light OK (label aria dinamis), search "sql" → "1 tulisan cocok" OK, galeri badge "Belum publik" OK, guestbook POST OK (entri Review Bot dihapus dari SQLite lokal)
+- Push 7b22b3b ke GitHub; produksi (bimogt.vercel.app) BELUM deploy — masih menunggu Vercel token + Neon URL
+
+Stage Summary:
+- Kesimpulan review: commit GPT LAYAK & berkualitas — karir tetap tanpa nama perusahaan, security hardening solid, SEO profesional; 1 error lint ditemukan & sudah diperbaiki+push (7b22b3b)
+- Menunggu kredensial Vercel (token + Neon URL) untuk menggabungkan semua perubahan ini ke produksi
