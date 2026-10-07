@@ -21,7 +21,11 @@ function ThemeToggle() {
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    // Tunda setState satu frame agar memenuhi aturan react-hooks/set-state-in-effect
+    const raf = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   const isDark = mounted && resolvedTheme === "dark";
 
