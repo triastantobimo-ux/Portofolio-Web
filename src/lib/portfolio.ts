@@ -175,8 +175,8 @@ export const projects: Project[] = [
    ============================================================ */
 export type ExperienceEntry = {
   role: string;
-  period: string;
-  industry: string; // industri + lokasi — TANPA nama perusahaan
+  period?: string; // opsional — aspek dengan satu rentang waktu cukup pakai span di level kluster
+  industry?: string; // industri + lokasi — TANPA nama perusahaan (opsional bila berulang)
   detail: string; // penjelasan singkat: apa & ngapain
 };
 
@@ -262,22 +262,16 @@ export const experienceClusters: ExperienceCluster[] = [
     entries: [
       {
         role: "Teknisi Komputer — Internet Café",
-        period: "2010 — 2012",
-        industry: "Retail & Jasa IT",
         detail:
           "Perawatan dan troubleshooting PC harian — hardware, jaringan, dan software diperbaiki dengan tangan sendiri.",
       },
       {
         role: "Store Clerk & Teknisi — Toko Video Game",
-        period: "2010 — 2012",
-        industry: "Retail & Jasa IT",
         detail:
           "Melayani penjualan sekaligus merawat konsol dan media game — tempat hobi gaming pertama kali membayar dirinya sendiri.",
       },
       {
         role: "Sales — Toko Komputer",
-        period: "2010 — 2012",
-        industry: "Retail & Jasa IT",
         detail:
           "Menjual PC dan aksesori sambil membedah spesifikasi untuk pelanggan awam — melatih kemampuan menjelaskan teknologi dengan bahasa sederhana.",
       },

@@ -61,13 +61,17 @@ export function Experience() {
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
                           <h4 className="text-sm font-semibold">{entry.role}</h4>
-                          <span className="font-mono text-[11px] whitespace-nowrap text-primary/90">
-                            {entry.period}
-                          </span>
+                          {entry.period && (
+                            <span className="font-mono text-[11px] whitespace-nowrap text-primary/90">
+                              {entry.period}
+                            </span>
+                          )}
                         </div>
-                        <p className="mt-0.5 text-xs font-medium text-muted-foreground/80">
-                          {entry.industry}
-                        </p>
+                        {entry.industry && (
+                          <p className="mt-0.5 text-xs font-medium text-muted-foreground/80">
+                            {entry.industry}
+                          </p>
+                        )}
                         <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground text-pretty">
                           {entry.detail}
                         </p>
