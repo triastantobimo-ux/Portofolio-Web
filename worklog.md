@@ -275,3 +275,20 @@ Work Log:
 Stage Summary:
 - LIVE: https://bimogt.vercel.app/#pengalaman — karir kini dikluster 3 aspek nature kerja dengan bullet historikal + penjelasan singkat per peran, tanpa nama perusahaan
 - Pelajaran: dev server sandbox lama harus di-kill sebelum rm -rf .next (Turbopack persistent cache pecah bila dihapus di belakang punggung proses hidup)
+
+---
+Task ID: 15
+Agent: Super Z (main agent)
+Task: Hapus breakdown tahun per-bullet di kluster non-formal (feedback pemilik)
+
+Work Log:
+- Feedback pemilik (dgn screenshot): kluster Non-formal masih menampilkan "2010 — 2012" berulang 3x di tiap bullet (padahal badge level aspek sudah ada); LinkedIn source pun mencatat ketiganya satu rentang "from time to time"
+- Sandbox reset lagi antar sesi: lokal ter-restore ke era Task 10 (b2c0570, data placeholder) + .zscripts/ght hilang + kredensial vercel CLI hilang -> restore PAT ke .zscripts/ght, git reset --hard FETCH_HEAD (remote = sumber kebenaran, tip 3b08fa1)
+- portfolio.ts: ExperienceEntry.period & .industry jadi opsional; 3 entri non-formal tanpa period/industry per bullet (badge 2010-2012 cukup di header kluster)
+- experience.tsx: render kondisional {entry.period && ...} dan {entry.industry && ...}
+- Lint bersih, build 22 halaman sukses; commit 18a1928 push -> auto-deploy Vercel (git connect)
+- Verifikasi produksi: badge "2010 — 2012" tampil tepat 1x, "Retail & Jasa IT" 0x; screenshot desktop konfirmasi bullet bersih (peran + penjelasan saja)
+- Catatan: kredensial vercel CLI hilang tiap reset sandbox — status deploy cukup dicek via curl produksi; push ke main tetap memicu deploy otomatis
+
+Stage Summary:
+- LIVE: kluster Non-formal kini tanpa breakdown tahun per bullet — satu badge rentang di header aspek, tiap bullet hanya peran + penjelasan; kluster Internal Audit & Accounting tetap menampilkan periode per entri (memang beda-beda)
